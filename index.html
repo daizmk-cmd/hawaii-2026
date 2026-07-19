@@ -202,12 +202,13 @@
 
   /* フライトカード */
   .flight-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
     gap: 16px;
     margin-bottom: 32px;
   }
   .flight-card {
+    flex: 1 1 280px;
     background: var(--ocean);
     color: var(--white);
     border-radius: 16px;
