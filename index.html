@@ -591,7 +591,7 @@
   .wk-col-special .wk-colhead { background: #fff6e6; }
   .wk-colhead {
     text-align: center; padding: 8px 4px; border-bottom: 1px solid rgba(0,0,0,0.06);
-    background: var(--foam); position: sticky; top: 0;
+    background: var(--foam); position: sticky; top: 0; min-height: 82px; box-sizing: border-box;
   }
   .wk-date { font-family: var(--serif); font-size: 17px; font-weight: 600; color: var(--ocean); display: block; }
   .wk-wd { font-family: var(--sans); font-size: 11px; color: var(--muted); }
@@ -940,19 +940,19 @@
   <div class="section-title">日程スケジュール</div>
   <div class="wk-outer">
 <div class="wk-wrap">
-  <div class="wk-hourcol" style="height:768px"><div class="wk-hourlabel" style="top:-7px">06:00</div><div class="wk-hourlabel" style="top:41px">07:00</div><div class="wk-hourlabel" style="top:89px">08:00</div><div class="wk-hourlabel" style="top:137px">09:00</div><div class="wk-hourlabel" style="top:185px">10:00</div><div class="wk-hourlabel" style="top:233px">11:00</div><div class="wk-hourlabel" style="top:281px">12:00</div><div class="wk-hourlabel" style="top:329px">13:00</div><div class="wk-hourlabel" style="top:377px">14:00</div><div class="wk-hourlabel" style="top:425px">15:00</div><div class="wk-hourlabel" style="top:473px">16:00</div><div class="wk-hourlabel" style="top:521px">17:00</div><div class="wk-hourlabel" style="top:569px">18:00</div><div class="wk-hourlabel" style="top:617px">19:00</div><div class="wk-hourlabel" style="top:665px">20:00</div><div class="wk-hourlabel" style="top:713px">21:00</div></div>
+  <div class="wk-hourcol" style="height:850px"><div class="wk-hourlabel" style="top:75px">06:00</div><div class="wk-hourlabel" style="top:123px">07:00</div><div class="wk-hourlabel" style="top:171px">08:00</div><div class="wk-hourlabel" style="top:219px">09:00</div><div class="wk-hourlabel" style="top:267px">10:00</div><div class="wk-hourlabel" style="top:315px">11:00</div><div class="wk-hourlabel" style="top:363px">12:00</div><div class="wk-hourlabel" style="top:411px">13:00</div><div class="wk-hourlabel" style="top:459px">14:00</div><div class="wk-hourlabel" style="top:507px">15:00</div><div class="wk-hourlabel" style="top:555px">16:00</div><div class="wk-hourlabel" style="top:603px">17:00</div><div class="wk-hourlabel" style="top:651px">18:00</div><div class="wk-hourlabel" style="top:699px">19:00</div><div class="wk-hourlabel" style="top:747px">20:00</div><div class="wk-hourlabel" style="top:795px">21:00</div></div>
   <div class="wk-grid"><div class="wk-col wk-col-special">
       <div class="wk-colhead"><span class="wk-date">7/24</span><span class="wk-wd">(金)</span><span class="wk-tag">到着日</span></div>
       <div class="wk-coltrack" style="height:768px"><div class="wk-lane" style="width:100.0%"><div class="wk-ev wk-flight" style="top:0px;height:180.0px"><div class="wk-ev-title">✈ NH182着</div><div class="wk-ev-sub">ホノルルT2 09:45着(HST)</div></div><div class="wk-ev wk-move" style="top:180.0px;height:36.0px"><div class="wk-ev-title">🚗 Uber</div><div class="wk-ev-sub">ホテルへ移動</div></div><div class="wk-ev wk-move" style="top:216.0px;height:24.0px"><div class="wk-ev-title">🏨 チェックイン</div></div><div class="wk-ev wk-act" style="top:240.0px;height:144.0px"><div class="wk-ev-title">🌊 ビーチ散策</div></div><div class="wk-ev wk-act" style="top:384.0px;height:96.0px"><div class="wk-ev-title">🛒 買い出し</div><div class="wk-ev-sub">Target/ドンキ</div></div><div class="wk-ev wk-food" style="top:480.0px;height:96.0px"><div class="wk-ev-title">🍽 フードコート</div><div class="wk-ev-sub">ホテル内・軽め</div></div><div class="wk-ev wk-act" style="top:672.0px;height:48.0px"><div class="wk-ev-title">🎇 花火</div><div class="wk-ev-sub">毎週金曜</div></div></div></div>
     </div><div class="wk-col">
       <div class="wk-colhead"><span class="wk-date">7/25</span><span class="wk-wd">(土)</span></div>
-      <div class="wk-coltrack" style="height:768px"><div class="wk-lane" style="width:100.0%"><div class="wk-ev wk-food" style="top:72.0px;height:96.0px"><div class="wk-ev-title">🍳 Goofy Cafe & Dine</div><div class="wk-ev-sub">朝食 / 1831 Ala Moana Blvd</div></div><div class="wk-ev wk-act" style="top:192.0px;height:192.0px"><div class="wk-ev-title">🐢 ウミガメ</div><div class="wk-ev-sub">6名全員・要予約</div></div><div class="wk-ev wk-act" style="top:384.0px;height:192.0px"><div class="wk-ev-title">🏊 プール</div></div><div class="wk-ev wk-food" style="top:492.0px;height:72.0px"><div class="wk-ev-title">🍹 Monkeypod Kitchen</div><div class="wk-ev-sub">ハッピーアワー 16:15〜 / 予約済(OpenTable)</div></div></div></div>
+      <div class="wk-coltrack" style="height:768px"><div class="wk-lane" style="width:100.0%"><div class="wk-ev wk-food" style="top:72.0px;height:96.0px"><div class="wk-ev-title">🍳 Goofy Cafe & Dine</div><div class="wk-ev-sub">朝食 / 1831 Ala Moana Blvd</div></div><div class="wk-ev wk-act" style="top:168.0px;height:120.0px"><div class="wk-ev-title">🌊 アトランティス潜水艦</div><div class="wk-ev-sub">6名・9:30〜12:00</div></div><div class="wk-ev wk-act" style="top:288.0px;height:168.0px"><div class="wk-ev-title">🏨 ホテル/プール</div></div><div class="wk-ev wk-food" style="top:456.0px;height:120.0px"><div class="wk-ev-title">🍹 Monkeypod Kitchen</div><div class="wk-ev-sub">移動含め15:30〜18:00 / ハッピーアワー16:15〜・予約済(OpenTable)</div></div></div></div>
     </div><div class="wk-col">
       <div class="wk-colhead"><span class="wk-date">7/26</span><span class="wk-wd">(日)</span></div>
-      <div class="wk-coltrack" style="height:768px"><div class="wk-lane" style="left:0;width:50.0%"><div class="wk-ev wk-act" style="top:48.0px;height:480.0px"><div class="wk-ev-title">🚌 オアフ一周</div><div class="wk-ev-sub">光子・玲子</div></div><div class="wk-ev wk-food" style="top:576.0px;height:72.0px"><div class="wk-ev-title">🍽 夕食</div><div class="wk-ev-sub">井奥家も一緒</div></div></div><div class="wk-lane" style="left:50.0%;width:50.0%"><div class="wk-ev wk-act" style="top:96.0px;height:480.0px"><div class="wk-ev-title">🚙 レンタカー</div><div class="wk-ev-sub">本川家4名・Bellows Beach</div></div></div></div>
+      <div class="wk-coltrack" style="height:768px"><div class="wk-lane" style="left:0;width:50.0%"><div class="wk-ev wk-act" style="top:48.0px;height:480.0px"><div class="wk-ev-title">🚌 オアフ一周</div><div class="wk-ev-sub">光子・玲子</div></div><div class="wk-ev wk-food" style="top:576.0px;height:72.0px"><div class="wk-ev-title">🍽 夕食</div><div class="wk-ev-sub">井奥家も一緒</div></div></div><div class="wk-lane" style="left:50.0%;width:50.0%"><div class="wk-ev wk-move" style="top:96.0px;height:24.0px"><div class="wk-ev-title">🚙 レンタカー受取</div></div><div class="wk-ev wk-act" style="top:144.0px;height:144.0px"><div class="wk-ev-title">🏖 Bellows Beach</div><div class="wk-ev-sub">本川家4名・午前中いっぱい</div></div><div class="wk-ev wk-food" style="top:300.0px;height:48.0px"><div class="wk-ev-title">🥞 Boots &amp; Kimo's</div><div class="wk-ev-sub">混雑の可能性あり</div></div><div class="wk-ev wk-act" style="top:360.0px;height:36.0px"><div class="wk-ev-title">🛒 Whole Foods</div></div><div class="wk-ev wk-act" style="top:420.0px;height:36.0px"><div class="wk-ev-title">🌳 日立の樹</div><div class="wk-ev-sub">モアナルアガーデン</div></div><div class="wk-ev wk-food" style="top:464.0px;height:48.0px;opacity:0.6;border-style:dashed"><div class="wk-ev-title">📦 Costco(予備)</div><div class="wk-ev-sub">時間があれば</div></div></div></div>
     </div><div class="wk-col">
       <div class="wk-colhead"><span class="wk-date">7/27</span><span class="wk-wd">(月)</span></div>
-      <div class="wk-coltrack" style="height:768px"><div class="wk-lane" style="width:100.0%"><div class="wk-ev wk-act" style="top:504.0px;height:168.0px"><div class="wk-ev-title">⛵ サンセットクルーズ</div><div class="wk-ev-sub">夕食付き・要予約</div></div></div></div>
+      <div class="wk-coltrack" style="height:768px"><div class="wk-lane" style="width:100.0%"><div class="wk-ev wk-move" style="top:72.0px;height:24.0px"><div class="wk-ev-title">🚗 Uber</div><div class="wk-ev-sub">ホテル→ダイヤモンドヘッド</div></div><div class="wk-ev wk-act" style="top:96.0px;height:96.0px"><div class="wk-ev-title">🏔 ダイヤモンドヘッド</div><div class="wk-ev-sub">4名・入場8:00-9:00予約済</div></div><div class="wk-ev wk-act" style="top:504.0px;height:168.0px"><div class="wk-ev-title">⛵ サンセットクルーズ</div><div class="wk-ev-sub">夕食付き・要予約</div></div></div></div>
     </div><div class="wk-col">
       <div class="wk-colhead"><span class="wk-date">7/28</span><span class="wk-wd">(火)</span></div>
       <div class="wk-coltrack" style="height:768px"><div class="wk-lane" style="width:100.0%"></div></div>
@@ -976,10 +976,10 @@
   <div class="section-title">出発前チェックリスト</div>
   <div class="todo-section">
     <div class="todo-grid">
-      <div class="todo-item">
-        <div class="todo-check"></div>
-        <div class="todo-text">現地アクティビティ手配</div>
-        <div class="todo-badge">任意</div>
+      <div class="todo-item done">
+        <div class="todo-check">✓</div>
+        <div class="todo-text">現地アクティビティ手配（アトランティス潜水艦ツアー確定）</div>
+        <div class="todo-badge" style="background:rgba(76,175,80,0.15);color:#388e3c">完了</div>
       </div>
       <div class="todo-item done">
         <div class="todo-check">✓</div>
@@ -1140,6 +1140,58 @@
     </div>
   </div>
 
+  <!-- 潜水艦ツアー詳細 -->
+  <div class="section-title">アトランティス潜水艦ツアー（7/25）予約確定情報</div>
+  <div style="background:var(--white);border-radius:16px;padding:28px;margin-bottom:32px;border:1px solid rgba(0,0,0,0.06)">
+    <div style="display:flex;gap:24px;margin-bottom:20px;flex-wrap:wrap">
+      <div style="flex:1;min-width:240px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">受付番号</div>
+        <div style="background:var(--foam);border-radius:10px;padding:12px 14px;font-family:var(--mono);font-size:13px;color:var(--ocean)">
+          JZ1DEMRO
+        </div>
+      </div>
+      <div style="flex:1;min-width:240px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">商品</div>
+        <div style="background:var(--foam);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--text)">
+          【午前発・ワイキキ発】アトランティス潜水艦観光ツアー<br>
+          <span style="font-size:11px;color:var(--muted)">水深30mの海底アドベンチャー</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:24px;margin-bottom:20px;flex-wrap:wrap">
+      <div style="flex:1;min-width:240px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">日時・代表者</div>
+        <div style="background:var(--foam);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--text)">
+          2026年7月25日（土）10:00<br>
+          <span style="font-size:11px;color:var(--muted)">代表者名：motokawa kaoru</span>
+        </div>
+      </div>
+      <div style="flex:1;min-width:240px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">人数</div>
+        <div style="background:var(--foam);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--text)">
+          大人 × 4、子供 × 2<br>
+          <span style="font-size:11px;color:var(--muted)">子供は身長92cm以上に限る</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#fff3df;border-radius:10px;padding:14px 16px;font-size:12px;color:#7a5a1a;line-height:1.9;margin-bottom:16px">
+      <strong>⏰ 集合について</strong><br>
+      ・<strong>10:00にPort Hilton</strong>にお越しください<br>
+      ・チェックインは予定の潜水時間の20分前に、ヒルトンハワイアンビレッジ内<strong>ヒルトン・ピア</strong>のビーチサイドまで<br>
+      ・住所：2005 Kalia Rd, Honolulu, HI 96815
+    </div>
+
+    <div style="background:var(--foam);border-radius:10px;padding:14px 16px;font-size:12px;color:var(--text);line-height:1.9">
+      <strong>📞 問い合わせ先</strong><br>
+      Atlantis Adventures<br>
+      Tel: 1-800-381-0237（現地時間 9:00〜17:00）<br>
+      Email: ores@atlantisadventures.com<br>
+      現地オフィス：Atlantis Submarines Waikiki - 252 Paoa Pl, Honolulu, HI 96815
+    </div>
+  </div>
+
   <!-- レンタカー詳細 -->
   <div class="section-title">ニッポンレンタカー（7/26）予約確定情報</div>
   <div style="background:var(--white);border-radius:16px;padding:28px;margin-bottom:32px;border:1px solid rgba(0,0,0,0.06)">
@@ -1173,6 +1225,107 @@
       ② 国際免許証（持っていない場合はパスポート原本で代替可）<br>
       ③ 主運転者ご本人名義のクレジットカード（複数枚持参推奨。日本発行カードが通らないケースが稀にあるため）<br>
       ④ 免許証・パスポート・クレジットカードの氏名が一致していること
+    </div>
+  </div>
+
+  <div style="background:var(--foam);border-radius:10px;padding:12px 16px;font-size:12px;color:var(--text);margin-bottom:32px">
+    <strong>📎 参考：カイルア/ラニカイエリア攻略ガイド</strong><br>
+    <a href="https://note.com/travel_paya/n/n61e5532c75f3" target="_blank" style="color:var(--ocean)">https://note.com/travel_paya/n/n61e5532c75f3</a><br>
+    <span style="font-size:11px;color:var(--muted)">Bellows Beach・Boots &amp; Kimo's・Whole Foods駐車の活用法など</span>
+  </div>
+
+  <!-- 日立の樹 -->
+  <div class="section-title">日立の樹／モアナルアガーデン（7/26）公式情報</div>
+  <div style="background:var(--white);border-radius:16px;padding:28px;margin-bottom:32px;border:1px solid rgba(0,0,0,0.06)">
+    <div style="display:flex;gap:24px;margin-bottom:20px;flex-wrap:wrap">
+      <div style="flex:1;min-width:240px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">営業時間・料金（公式サイト確認済み）</div>
+        <div style="background:var(--foam);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--text)">
+          毎日 8:30〜16:00<br>
+          大人$10・子供(6-12歳)$7・6歳未満無料<br>
+          <span style="font-size:11px;color:var(--muted)">住所：2850-A Moanalua Rd, Honolulu, HI 96819</span>
+        </div>
+      </div>
+      <div style="flex:1;min-width:240px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">Costco（予備予定）</div>
+        <div style="background:var(--foam);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--text)">
+          Costco Iwilei（525 Alakawa St）<br>
+          <span style="font-size:11px;color:var(--muted)">日立の樹から車で約10分。時間に余裕があれば立ち寄り、なければスキップでOK</span>
+        </div>
+      </div>
+    </div>
+    <div style="background:#fdeaea;border-radius:10px;padding:14px 16px;font-size:12px;color:#8a3a3a;line-height:1.9">
+      <strong>⚠️ 公式サイトからの注意事項</strong><br>
+      「Googleマップの徒歩ルート案内は不正確なので従わないように」と公式に明記あり（車での来園が前提）。<br>
+      車での行き方：Moanalua Freeway (H-201) を西方向へ→Tripler出口で降りる→出口ランプ途中の「Moanalua Gardens」看板の直後を右折してすぐ入園
+    </div>
+  </div>
+
+  <!-- Googleマップナビ -->
+  <div class="section-title">7/26 当日ナビ用リンク（Googleマップ）</div>
+  <div style="background:var(--white);border-radius:16px;padding:28px;margin-bottom:32px;border:1px solid rgba(0,0,0,0.06)">
+    <div style="margin-bottom:16px">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">🗺️ メインルート（ホテル→Bellows→Boots&amp;Kimo's→Whole Foods→日立の樹→ホテル）</div>
+      <a href="https://www.google.com/maps/dir/?api=1&origin=2005+Kalia+Rd,+Honolulu,+HI+96815&destination=2005+Kalia+Rd,+Honolulu,+HI+96815&waypoints=41-043+Kalanianaole+Hwy,+Waimanalo,+HI+96795|1020+Keolu+Dr,+Kailua,+HI+96734|629+Kailua+Rd,+Kailua,+HI+96734|2850-A+Moanalua+Rd,+Honolulu,+HI+96819&travelmode=driving" target="_blank" style="display:inline-block;background:var(--ocean);color:white;padding:10px 18px;border-radius:20px;font-size:13px;text-decoration:none">📍 全ルートをGoogleマップで開く</a>
+    </div>
+    <div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">🗺️ 予備ルート（日立の樹→Costco→ホテル）※時間があれば</div>
+      <a href="https://www.google.com/maps/dir/?api=1&origin=2850-A+Moanalua+Rd,+Honolulu,+HI+96819&destination=2005+Kalia+Rd,+Honolulu,+HI+96815&waypoints=525+Alakawa+St,+Honolulu,+HI+96817&travelmode=driving" target="_blank" style="display:inline-block;background:var(--muted);color:white;padding:10px 18px;border-radius:20px;font-size:13px;text-decoration:none">📍 Costco経由ルートを開く</a>
+    </div>
+    <div style="font-size:11px;color:var(--muted);margin-top:16px">タップするとGoogleマップアプリ/ブラウザが開き、そのままカーナビとして使えます（現在地からの出発に自動調整されます）。</div>
+  </div>
+
+  <!-- ダイヤモンドヘッド詳細 -->
+  <div class="section-title">ダイヤモンドヘッド（7/27）予約確定情報</div>
+  <div style="background:var(--white);border-radius:16px;padding:28px;margin-bottom:32px;border:1px solid rgba(0,0,0,0.06)">
+    <div style="display:flex;gap:24px;margin-bottom:20px;flex-wrap:wrap">
+      <div style="flex:1;min-width:240px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">予約内容</div>
+        <div style="background:var(--foam);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--text)">
+          ダイヤモンドヘッド州立記念碑保護区<br>
+          2026年7月27日（月）8:00〜9:00 入場・4名<br>
+          <span style="font-size:11px;color:var(--muted)">レンタカーなし（駐車予約なし・入場のみ）</span>
+        </div>
+      </div>
+      <div style="flex:1;min-width:240px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">決済情報</div>
+        <div style="background:var(--foam);border-radius:10px;padding:12px 14px;font-family:var(--mono);font-size:12px;color:var(--ocean);line-height:1.8">
+          参照ID：6a5c409d48e594a99308a6fa<br>
+          認証コード：82093196<br>
+          合計：$21.53（入場$20.00＋手数料$1.53）<br>
+          <span style="font-size:11px;color:var(--muted)">取引：2026年7月18日 17:14 HST</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#fff3df;border-radius:10px;padding:14px 16px;font-size:12px;color:#7a5a1a;line-height:1.9">
+      <strong>⏰ 当日について</strong><br>
+      ・入場は予約枠開始から30分以内（8:00〜8:30）に<br>
+      ・ハイキング自体は往復60〜90分（階段多め）→ 9:30〜10:00頃終了見込み<br>
+      ・26日午前は満枠だったため、この日程での予約となっています
+    </div>
+  </div>
+
+  <!-- ダイヤモンドヘッド行き方 -->
+  <div class="section-title">ホテル → ダイヤモンドヘッド（レンタカーなし）</div>
+  <div style="background:var(--white);border-radius:16px;padding:28px;margin-bottom:32px;border:1px solid rgba(0,0,0,0.06)">
+    <div style="display:flex;gap:24px;flex-wrap:wrap">
+      <div style="flex:1;min-width:240px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">🚕 タクシー/Uber（おすすめ）</div>
+        <div style="background:var(--foam);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--text);line-height:1.7">
+          所要約10分・距離約2マイル<br>
+          目安運賃：片道$12〜22程度<br>
+          <span style="font-size:11px;color:var(--muted)">8:00-8:30の入場枠に確実に間に合わせるなら、7:00台にホテル出発を</span>
+        </div>
+      </div>
+      <div style="flex:1;min-width:240px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">🚌 バス（TheBus）</div>
+        <div style="background:var(--foam);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--text);line-height:1.7">
+          所要20〜30分（乗換なし）＋クレーターまで徒歩10〜15分<br>
+          Kuhio Ave沿いのバス停からRoute 2 or 23に乗車、Diamond Head Rd付近で下車<br>
+          <span style="font-size:11px;color:var(--muted)">運賃：$3/人（HOLOカード）。安いが乗車後の徒歩の分、時間に余裕を持って</span>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1239,6 +1392,55 @@
       ② クレジットカードを支払い方法に登録（現地での現金・チップ不要）<br>
       ③ 行き先「Hilton Hawaiian Village Waikiki」をお気に入り登録しておく<br>
       ④ 空港Wi-Fiでアプリが使えるよう事前にログイン確認
+    </div>
+  </div>
+
+  <!-- 検討中オプション -->
+  <div class="section-title">ウェット&ワイルド・ハワイ（検討中・未確定）</div>
+  <div style="background:var(--white);border-radius:16px;padding:28px;margin-bottom:32px;border:1px dashed rgba(0,0,0,0.15)">
+    <div style="display:inline-block;background:#fff3df;color:#7a5a1a;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;margin-bottom:16px">現在の日程には未組込み・現地判断で検討</div>
+    <div style="display:flex;gap:24px;margin-bottom:20px;flex-wrap:wrap">
+      <div style="flex:1;min-width:240px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">基本情報</div>
+        <div style="background:var(--foam);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--text)">
+          住所：400 Farrington Hwy, Kapolei, HI 96707<br>
+          電話：+1-808-674-9283<br>
+          <span style="font-size:11px;color:var(--muted)">ヒルトンから車で約35〜40分（西オアフ・カポレイ）</span>
+        </div>
+      </div>
+      <div style="flex:1;min-width:240px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">営業時間</div>
+        <div style="background:var(--foam);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--text)">
+          月〜金 10:30〜16:00／土 10:30〜20:00／日 10:30〜16:30<br>
+          <span style="font-size:11px;color:var(--muted)">曜日により変動あり。訪問日が近づいたら公式サイトで要確認</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:var(--foam);border-radius:10px;padding:14px 16px;font-size:12px;color:var(--text);line-height:1.9">
+      <strong>💧 概要</strong><br>
+      オアフ唯一のウォーターパーク（西オアフ・カポレイ）。絶叫系スライド（Tornado等）から、キッズ向けのWater World Playground、波のプールまで幅広く、家族連れに人気。<br>
+      料金の目安：大人 $65前後〜（購入サイトにより変動、$99程度のワイキキ送迎付きツアーもあり）。子供は身長制限のある割引あり。<br>
+      <span style="font-size:11px;color:var(--muted)">最新の料金・営業時間は公式サイト（wetnwildhawaii.com）で要確認</span>
+    </div>
+
+    <div style="display:flex;gap:24px;margin-top:20px;flex-wrap:wrap">
+      <div style="flex:1;min-width:240px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">🚕 タクシー/Uber（現実的な選択肢）</div>
+        <div style="background:var(--foam);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--text);line-height:1.7">
+          所要約35〜40分・距離約23マイル<br>
+          H-1フリーウェイを西へ、Exit 1E（Farrington Hwy方面）で下車すぐ<br>
+          <span style="font-size:11px;color:var(--muted)">目安運賃：片道$60〜80程度（6名ならUber XL、渋滞時は延びる可能性）</span>
+        </div>
+      </div>
+      <div style="flex:1;min-width:240px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">🚌 バス（TheBus）</div>
+        <div style="background:var(--foam);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--text);line-height:1.7">
+          直通なし・乗り換え必須。片道約1時間30分〜1時間45分<br>
+          ワイキキ→アラモアナ等で乗換→Route 40 / 40Aで西へ→UH West Oahu付近下車→徒歩10〜15分<br>
+          <span style="font-size:11px;color:var(--muted)">運賃：$3/人（HOLOカード）、1日券$7.50。子供連れ・荷物ありだと負担大きめ</span>
+        </div>
+      </div>
     </div>
   </div>
 
