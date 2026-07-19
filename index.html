@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hawaii Trip 2026 — 本川家ハワイ旅行</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+JP:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #f5ede0;
+    --sand2: #ede0cc;
+    --ocean: #1a4a6b;
+    --ocean2: #2d6a96;
+    --ocean3: #5a9bbf;
+    --foam: #e8f4f8;
+    --gold: #c4923a;
+    --gold2: #e8b86d;
+    --text: #1c1c1e;
+    --muted: #7a6a5a;
+    --white: #fdfaf6;
+    --serif: 'Cormorant Garamond', serif;
+    --sans: 'Noto Sans JP', sans-serif;
+    --mono: 'DM Mono', monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--sand);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ヘッダー */
+  .hero {
+    background: var(--ocean);
+    color: var(--white);
+    padding: 48px 48px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    bottom: -30px; left: -10%; right: -10%;
+    height: 60px;
+    background: var(--sand);
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    z-index: 2;
+  }
+  .hero-waves {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 80px;
+    opacity: 0.12;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent, transparent 20px,
+      rgba(255,255,255,0.3) 20px, rgba(255,255,255,0.3) 21px
+    );
+  }
+  .hero-inner { position: relative; z-index: 1; max-width: 900px; }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gold2);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  .hero-title {
+    font-family: var(--serif);
+    font-size: 52px;
+    font-weight: 300;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .hero-title em { font-style: italic; color: var(--gold2); }
+  .hero-sub {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 32px;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .meta-item {}
+  .meta-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+  .meta-value {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--white);
+  }
+
+  /* メイン */
+  main { max-width: 960px; margin: 0 auto; padding: 48px 32px 80px; }
+
+  /* メンバーセクション */
+  .section-title {
+    font-family: var(--serif);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--sand2), transparent);
+  }
+
+  .member-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    margin-bottom: 48px;
+  }
+  .member-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 14px 10px;
+    text-align: center;
+    border: 1px solid rgba(0,0,0,0.06);
+    position: relative;
+    overflow: hidden;
+  }
+  .member-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--ocean2);
+  }
+  .member-card.family::before { background: var(--ocean); }
+  .member-card.guest::before { background: var(--gold); }
+  .member-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    margin: 0 auto 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--white);
+    background: var(--ocean2);
+  }
+  .member-card.guest .member-avatar { background: var(--gold); }
+  .member-name {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .member-name-en {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--muted);
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+  }
+  .member-seat {
+    font-family: var(--mono);
+    font-size: 10px;
+    background: var(--foam);
+    color: var(--ocean);
+    padding: 2px 6px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+  .seat-row {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    align-items: center;
+  }
+  .seat-label {
+    font-size: 9px;
+    color: var(--muted);
+    font-family: var(--mono);
+    letter-spacing: 0.3px;
+  }
+
+  /* フライトカード */
+  .flight-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .flight-card {
+    background: var(--ocean);
+    color: var(--white);
+    border-radius: 16px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .flight-card::after {
+    content: '✈';
+    position: absolute;
+    right: 20px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 48px;
+    opacity: 0.07;
+  }
+  .flight-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--gold2);
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  .flight-route {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 300;
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+  .flight-route .arrow { color: var(--gold2); margin: 0 8px; }
+  .flight-times {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 10px;
+  }
+  .flight-time {
+    font-family: var(--mono);
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .flight-duration {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+    flex: 1;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 4px;
+    position: relative;
+  }
+  .flight-date {
+    font-family: var(--sans);
+    font-size: 11px;
+    color: rgba(255,255,255,0.55);
+  }
+  .flight-terminal {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: rgba(255,255,255,0.45);
+    margin-top: 6px;
+  }
+
+  /* ホテルカード */
+  .hotel-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 32px;
+    border: 1px solid rgba(0,0,0,0.06);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: start;
+  }
+  .hotel-name {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ocean);
+    margin-bottom: 4px;
+  }
+  .hotel-brand {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .hotel-details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .hotel-detail-row {
+    display: flex;
+    gap: 8px;
+    font-size: 12px;
+  }
+  .hd-label {
+    color: var(--muted);
+    min-width: 90px;
+    font-size: 11px;
+  }
+  .hd-value { color: var(--text); font-weight: 500; }
+  .hotel-price-box {
+    background: var(--foam);
+    border-radius: 12px;
+    padding: 18px 20px;
+    text-align: right;
+    min-width: 160px;
+    border: 1px solid rgba(26,74,107,0.1);
+  }
+  .hp-label { font-size: 10px; color: var(--muted); margin-bottom: 4px; }
+  .hp-amount {
+    font-family: var(--serif);
+    font-size: 24px;
+    color: var(--ocean);
+    font-weight: 600;
+  }
+  .hp-nights { font-size: 10px; color: var(--muted); margin-top: 2px; }
+  .hp-booking { font-family: var(--mono); font-size: 10px; color: var(--muted); margin-top: 8px; }
+  .cancel-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #fff3e0;
+    color: #c4923a;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 20px;
+    margin-top: 10px;
+    border: 1px solid rgba(196,146,58,0.3);
+  }
+
+  /* スケジュールタイムライン */
+  .timeline { margin-bottom: 40px; }
+  .day-block {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 0;
+    margin-bottom: 2px;
+  }
+  .day-label {
+    padding: 16px 0 16px 0;
+    text-align: center;
+    position: relative;
+  }
+  .day-label::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0; right: 0;
+    width: 1px;
+    background: linear-gradient(180deg, var(--sand2), var(--sand2));
+  }
+  .day-date {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--ocean);
+    line-height: 1;
+    display: block;
+  }
+  .day-weekday {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    display: block;
+    margin-top: 2px;
+  }
+  .day-night {
+    font-size: 9px;
+    color: var(--muted);
+    display: block;
+    margin-top: 6px;
+    font-family: var(--mono);
+  }
+  .day-dot {
+    position: absolute;
+    right: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--ocean2);
+    border: 2px solid var(--sand);
+    z-index: 1;
+  }
+  .day-dot.special { background: var(--gold); }
+  .day-events { padding: 12px 0 12px 24px; }
+  .event {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    border: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    position: relative;
+  }
+  .event.flight { background: var(--ocean); color: var(--white); }
+  .event.hotel-in { border-left: 3px solid var(--ocean2); }
+  .event.hotel-out { border-left: 3px solid var(--gold); }
+  .event.todo { border-left: 3px solid var(--gold); background: #fffdf8; }
+  .event-icon {
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .event-body {}
+  .event-title {
+    font-weight: 500;
+    font-size: 13px;
+    margin-bottom: 2px;
+  }
+  .event.flight .event-title { color: var(--white); }
+  .event-detail {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .event.flight .event-detail { color: rgba(255,255,255,0.65); }
+  .event-time {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--gold2);
+    margin-left: auto;
+    flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .event.flight .event-time { color: var(--gold2); }
+
+  /* ===== カレンダー表示 ===== */
+  .cal-day {
+    margin-bottom: 28px;
+    background: var(--white);
+    border-radius: 14px;
+    border: 1px solid rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+  .cal-day.special-day { border-color: rgba(196,146,58,0.3); }
+  .cal-day-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 14px 18px;
+    background: var(--foam);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+  .cal-day-date {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ocean);
+  }
+  .cal-day-weekday {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+  .cal-day-tag {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--gold2);
+    margin-left: auto;
+    letter-spacing: 0.5px;
+  }
+  .cal-grid {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+  }
+  .cal-hours {
+    display: flex;
+    flex-direction: column;
+  }
+  .cal-hour-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--muted);
+    text-align: right;
+    padding-right: 8px;
+    height: 32px;
+    line-height: 32px;
+    border-top: 1px solid rgba(0,0,0,0.04);
+    box-sizing: border-box;
+  }
+  .cal-hour-label:first-child { border-top: none; }
+  .cal-track {
+    position: relative;
+  }
+  .cal-track-line {
+    height: 32px;
+    border-top: 1px solid rgba(0,0,0,0.04);
+    box-sizing: border-box;
+  }
+  .cal-track-line:first-child { border-top: none; }
+  .cal-block {
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    border-radius: 8px;
+    padding: 6px 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+    border-left: 3px solid var(--ocean2);
+    background: #eaf3fb;
+  }
+  .cal-block.flight-block { background: var(--ocean); border-left-color: var(--gold); }
+  .cal-block.flight-block .cal-block-title,
+  .cal-block.flight-block .cal-block-time { color: var(--white); }
+  .cal-block.flight-block .cal-block-sub { color: rgba(255,255,255,0.65); }
+  .cal-block.gold-block { background: #fff6e6; border-left-color: var(--gold); }
+  .cal-block.green-block { background: #eef6ea; border-left-color: #6a9c4a; }
+  .cal-block.pink-block { background: #fdeaea; border-left-color: #d64545; }
+  .cal-block-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .cal-block-sub {
+    font-size: 9px;
+    color: var(--muted);
+    line-height: 1.3;
+    margin-top: 1px;
+  }
+  .cal-block-time {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--gold2);
+    margin-top: 2px;
+  }
+  .cal-free {
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    border-radius: 8px;
+    background: repeating-linear-gradient(
+      135deg,
+      rgba(0,0,0,0.015),
+      rgba(0,0,0,0.015) 6px,
+      transparent 6px,
+      transparent 12px
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cal-free-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    opacity: 0.55;
+  }
+  .cal-legend {
+    display: flex;
+    gap: 16px;
+    padding: 10px 18px;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    font-size: 10px;
+    color: var(--muted);
+  }
+  .cal-legend-item { display: flex; align-items: center; gap: 5px; }
+  .cal-legend-dot { width: 9px; height: 9px; border-radius: 2px; }
+
+  /* ===== 週次カレンダー（Googleカレンダー風） ===== */
+  .wk-outer { overflow-x: auto; border-radius: 14px; border: 1px solid rgba(0,0,0,0.06); background: var(--white); }
+  .wk-wrap { display: flex; min-width: 760px; }
+  .wk-hourcol { width: 46px; position: relative; flex-shrink: 0; border-right: 1px solid rgba(0,0,0,0.06); }
+  .wk-hourlabel { position: absolute; right: 8px; font-family: var(--mono); font-size: 10px; color: var(--muted); }
+  .wk-grid { display: flex; flex: 1; }
+  .wk-col { flex: 1; min-width: 90px; border-right: 1px solid rgba(0,0,0,0.06); position: relative; }
+  .wk-col:last-child { border-right: none; }
+  .wk-col-special .wk-colhead { background: #fff6e6; }
+  .wk-colhead {
+    text-align: center; padding: 8px 4px; border-bottom: 1px solid rgba(0,0,0,0.06);
+    background: var(--foam); position: sticky; top: 0;
+  }
+  .wk-date { font-family: var(--serif); font-size: 17px; font-weight: 600; color: var(--ocean); display: block; }
+  .wk-wd { font-family: var(--sans); font-size: 11px; color: var(--muted); }
+  .wk-tag { display: block; font-family: var(--mono); font-size: 8.5px; color: var(--gold2); letter-spacing: 0.3px; margin-top: 2px; }
+  .wk-coltrack {
+    position: relative;
+    background: repeating-linear-gradient(to bottom, transparent 0, transparent 47px, rgba(0,0,0,0.035) 47px, rgba(0,0,0,0.035) 48px);
+  }
+  .wk-lane { position: absolute; top: 0; bottom: 0; left: 0; }
+  .wk-ev {
+    position: absolute; left: 3px; right: 3px; border-radius: 6px;
+    padding: 4px 6px; font-size: 10.5px; line-height: 1.25; overflow: hidden;
+    border-left: 3px solid var(--gold); box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+  }
+  .wk-ev-title { font-weight: 600; }
+  .wk-ev-sub { font-size: 9px; color: var(--muted); margin-top: 1px; }
+  .wk-flight { background: var(--ocean); border-left-color: var(--gold2); }
+  .wk-flight .wk-ev-title, .wk-flight .wk-ev-sub { color: var(--white); }
+  .wk-flight .wk-ev-sub { color: rgba(255,255,255,0.7); }
+  .wk-move { background: #fff3df; border-left-color: var(--gold); }
+  .wk-act { background: #e9f3e6; border-left-color: #6a9c4a; }
+  .wk-food { background: #fbe9ea; border-left-color: #c4555f; }
+  .wk-legend { display: flex; gap: 18px; margin-top: 14px; font-size: 12px; color: var(--muted); flex-wrap: wrap; }
+  .wk-legend-item { display: flex; align-items: center; gap: 6px; }
+  .wk-legend-dot { width: 11px; height: 11px; border-radius: 3px; }
+
+  /* TODOリスト */
+  .todo-section {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 32px;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .todo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; }
+  .todo-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: var(--sand);
+    font-size: 12px;
+  }
+  .todo-item.urgent { background: #fff3e0; }
+  .todo-item.done { background: #e8f5e9; opacity: 0.7; }
+  .todo-check {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    border: 1.5px solid var(--muted);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+  }
+  .todo-item.done .todo-check { background: #4caf50; border-color: #4caf50; color: white; }
+  .todo-item.urgent .todo-check { border-color: var(--gold); }
+  .todo-text { color: var(--text); }
+  .todo-badge {
+    margin-left: auto;
+    font-size: 9px;
+    font-family: var(--mono);
+    padding: 2px 6px;
+    border-radius: 10px;
+    background: rgba(196,146,58,0.15);
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+  .todo-item.done .todo-badge { background: rgba(76,175,80,0.15); color: #388e3c; }
+
+  /* レストランリスト */
+  .resto-meal-block { margin-bottom: 32px; }
+  .resto-meal-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gold2);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(196,146,58,0.25);
+  }
+  .resto-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .resto-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 14px 16px;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .resto-card.featured { border-left: 3px solid var(--gold); background: #fffaf0; }
+  .resto-name {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .resto-meta {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--gold2);
+    margin-bottom: 6px;
+  }
+  .resto-detail {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .resto-addr {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    color: var(--muted);
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px dashed rgba(0,0,0,0.08);
+  }
+  @media (max-width: 600px) {
+    .resto-grid { grid-template-columns: 1fr; }
+  }
+
+  /* 費用サマリ */
+  .cost-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .cost-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .cost-label { font-size: 10px; color: var(--muted); letter-spacing: 0.5px; margin-bottom: 6px; }
+  .cost-amount {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--ocean);
+    font-weight: 600;
+    line-height: 1.1;
+  }
+  .cost-sub { font-size: 10px; color: var(--muted); margin-top: 4px; }
+  .cost-card.total {
+    background: var(--ocean);
+    border-color: var(--ocean);
+  }
+  .cost-card.total .cost-label { color: rgba(255,255,255,0.55); }
+  .cost-card.total .cost-amount { color: var(--white); font-size: 26px; }
+  .cost-card.total .cost-sub { color: rgba(255,255,255,0.5); }
+
+  /* フッター */
+  footer {
+    text-align: center;
+    padding: 32px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    border-top: 1px solid var(--sand2);
+  }
+
+  @media print {
+    body { background: white; }
+    .hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-waves"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Family Trip · Summer 2026</div>
+    <h1 class="hero-title">Aloha, <em>Hawaii</em></h1>
+    <p class="hero-sub">本川家 ハワイ旅行 — スケジュール</p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <div class="meta-label">期間</div>
+        <div class="meta-value">7月24日（金）〜 7月30日（木）</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">滞在</div>
+        <div class="meta-value">5泊7日 · Honolulu, Hawaii</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">メンバー</div>
+        <div class="meta-value">6名</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">ホテル</div>
+        <div class="meta-value">Hilton Hawaiian Village</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- メンバー -->
+  <div class="section-title">旅行メンバー</div>
+  <div class="member-grid">
+    <div class="member-card family">
+      <div class="member-avatar" style="background:#1a4a6b">大</div>
+      <div class="member-name">本川 大輔</div>
+      <div class="member-name-en">MOTOKAWA DAISUKE</div>
+      <div class="seat-row">
+        <span class="seat-label">✈往 / 復↩</span>
+        <span class="member-seat">71D / 71D</span>
+      </div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:4px">EPIGNP</div>
+    </div>
+    <div class="member-card family">
+      <div class="member-avatar" style="background:#2d6a96">薫</div>
+      <div class="member-name">本川 薫</div>
+      <div class="member-name-en">MOTOKAWA KAORU</div>
+      <div class="seat-row">
+        <span class="seat-label">✈往 / 復↩</span>
+        <span class="member-seat">71E / 71E</span>
+      </div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:4px">EPIGNP</div>
+    </div>
+    <div class="member-card family">
+      <div class="member-avatar" style="background:#5a9bbf">希</div>
+      <div class="member-name">本川 優希</div>
+      <div class="member-name-en">MOTOKAWA YUKI</div>
+      <div class="seat-row">
+        <span class="seat-label">✈往 / 復↩</span>
+        <span class="member-seat">71F / 71F</span>
+      </div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:4px">EPIGNP</div>
+    </div>
+    <div class="member-card family">
+      <div class="member-avatar" style="background:#7ab5d0">羽</div>
+      <div class="member-name">本川 優羽</div>
+      <div class="member-name-en">MOTOKAWA YUWA</div>
+      <div class="seat-row">
+        <span class="seat-label">✈往 / 復↩</span>
+        <span class="member-seat">71G / 71G</span>
+      </div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:4px">EPIGNP</div>
+    </div>
+    <div class="member-card guest">
+      <div class="member-avatar" style="background:#c4923a">光</div>
+      <div class="member-name">田中 光子</div>
+      <div class="member-name-en">TANAKA MITSUKO</div>
+      <div class="seat-row">
+        <span class="seat-label">✈往 / 復↩</span>
+        <span class="member-seat">54B / 53B</span>
+      </div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:4px">F6H2Q7</div>
+    </div>
+    <div class="member-card guest">
+      <div class="member-avatar" style="background:#d4a85a">玲</div>
+      <div class="member-name">保科 玲子</div>
+      <div class="member-name-en">HOSHINA REIKO</div>
+      <div class="seat-row">
+        <span class="seat-label">✈往 / 復↩</span>
+        <span class="member-seat">54A / 53A</span>
+      </div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:4px">FI6ZAZ</div>
+    </div>
+  </div>
+
+  <!-- フライト -->
+  <div class="section-title">フライト情報</div>
+  <div class="flight-row">
+    <div class="flight-card">
+      <div class="flight-num">ANA NH182 · EPIGNP / F6H2Q7 / FI6ZAZ</div>
+      <div class="flight-route">成田 <span class="arrow">→</span> ホノルル</div>
+      <div class="flight-times">
+        <div>
+          <div class="flight-time">21:10</div>
+          <div style="font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.5);margin-top:2px">7/24（金）JST</div>
+        </div>
+        <div class="flight-duration">7h 35m ──────</div>
+        <div>
+          <div class="flight-time">09:45<span style="font-size:11px;opacity:.6">+1</span></div>
+          <div style="font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.5);margin-top:2px">7/24（金）HST</div>
+        </div>
+      </div>
+      <div class="flight-date">出発：2026年7月24日（金）· 時差により同日着</div>
+      <div class="flight-terminal">成田 T1 出発 · ホノルル T2 到着 · B787</div>
+    </div>
+    <div class="flight-card" style="background:#14395a">
+      <div class="flight-num">ANA NH181 · EPIGNP / F6H2Q7 / FI6ZAZ</div>
+      <div class="flight-route">ホノルル <span class="arrow">→</span> 成田</div>
+      <div class="flight-times">
+        <div>
+          <div class="flight-time">13:00</div>
+          <div style="font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.5);margin-top:2px">7/29（水）HST</div>
+        </div>
+        <div class="flight-duration">8h 15m ──────</div>
+        <div>
+          <div class="flight-time">16:15<span style="font-size:11px;opacity:.6">+1</span></div>
+          <div style="font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.5);margin-top:2px">7/30（木）JST</div>
+        </div>
+      </div>
+      <div class="flight-date">出発：2026年7月29日（水）· 翌7月30日（木）成田着</div>
+      <div class="flight-terminal">ホノルル T2 出発 · 成田 T1 到着 · B787</div>
+    </div>
+  </div>
+
+  <!-- ホテル -->
+  <div class="section-title">宿泊</div>
+  <div class="hotel-card">
+    <div>
+      <div class="hotel-name">Hilton Hawaiian Village</div>
+      <div class="hotel-brand">Hilton · Waikiki Beach · 楽天トラベル予約</div>
+      <div class="hotel-details">
+        <div class="hotel-detail-row">
+          <span class="hd-label">予約番号</span>
+          <span class="hd-value">RYa0mivak0</span>
+        </div>
+        <div class="hotel-detail-row">
+          <span class="hd-label">住所</span>
+          <span class="hd-value">2005 Kalia Road, Honolulu, HI 96815</span>
+        </div>
+        <div class="hotel-detail-row">
+          <span class="hd-label">TEL</span>
+          <span class="hd-value">+1-808-949-4321</span>
+        </div>
+        <div class="hotel-detail-row">
+          <span class="hd-label">チェックイン</span>
+          <span class="hd-value">7月24日（金）</span>
+        </div>
+        <div class="hotel-detail-row">
+          <span class="hd-label">チェックアウト</span>
+          <span class="hd-value">7月29日（水）</span>
+        </div>
+        <div class="hotel-detail-row">
+          <span class="hd-label">部屋タイプ</span>
+          <span class="hd-value">タパ・コレクション ファミリー シティビュー（約65㎡・ダブル3台）</span>
+        </div>
+        <div class="hotel-detail-row">
+          <span class="hd-label">人数</span>
+          <span class="hd-value">大人4名・子供2名（計6名）</span>
+        </div>
+      </div>
+      <div class="cancel-badge">⚠ キャンセル期限：7月21日（火）00:00まで無料（現地時間）</div>
+    </div>
+  </div>
+
+  <!-- 日程スケジュール -->
+  <div class="section-title">日程スケジュール</div>
+  <div class="wk-outer">
+<div class="wk-wrap">
+  <div class="wk-hourcol" style="height:768px"><div class="wk-hourlabel" style="top:-7px">06:00</div><div class="wk-hourlabel" style="top:41px">07:00</div><div class="wk-hourlabel" style="top:89px">08:00</div><div class="wk-hourlabel" style="top:137px">09:00</div><div class="wk-hourlabel" style="top:185px">10:00</div><div class="wk-hourlabel" style="top:233px">11:00</div><div class="wk-hourlabel" style="top:281px">12:00</div><div class="wk-hourlabel" style="top:329px">13:00</div><div class="wk-hourlabel" style="top:377px">14:00</div><div class="wk-hourlabel" style="top:425px">15:00</div><div class="wk-hourlabel" style="top:473px">16:00</div><div class="wk-hourlabel" style="top:521px">17:00</div><div class="wk-hourlabel" style="top:569px">18:00</div><div class="wk-hourlabel" style="top:617px">19:00</div><div class="wk-hourlabel" style="top:665px">20:00</div><div class="wk-hourlabel" style="top:713px">21:00</div></div>
+  <div class="wk-grid"><div class="wk-col wk-col-special">
+      <div class="wk-colhead"><span class="wk-date">7/24</span><span class="wk-wd">(金)</span><span class="wk-tag">到着日</span></div>
+      <div class="wk-coltrack" style="height:768px"><div class="wk-lane" style="width:100.0%"><div class="wk-ev wk-flight" style="top:0px;height:180.0px"><div class="wk-ev-title">✈ NH182着</div><div class="wk-ev-sub">ホノルルT2 09:45着(HST)</div></div><div class="wk-ev wk-move" style="top:180.0px;height:36.0px"><div class="wk-ev-title">🚗 Uber</div><div class="wk-ev-sub">ホテルへ移動</div></div><div class="wk-ev wk-move" style="top:216.0px;height:24.0px"><div class="wk-ev-title">🏨 チェックイン</div></div><div class="wk-ev wk-act" style="top:240.0px;height:144.0px"><div class="wk-ev-title">🌊 ビーチ散策</div></div><div class="wk-ev wk-act" style="top:384.0px;height:96.0px"><div class="wk-ev-title">🛒 買い出し</div><div class="wk-ev-sub">Target/ドンキ</div></div><div class="wk-ev wk-food" style="top:480.0px;height:96.0px"><div class="wk-ev-title">🍽 フードコート</div><div class="wk-ev-sub">ホテル内・軽め</div></div><div class="wk-ev wk-act" style="top:672.0px;height:48.0px"><div class="wk-ev-title">🎇 花火</div><div class="wk-ev-sub">毎週金曜</div></div></div></div>
+    </div><div class="wk-col">
+      <div class="wk-colhead"><span class="wk-date">7/25</span><span class="wk-wd">(土)</span></div>
+      <div class="wk-coltrack" style="height:768px"><div class="wk-lane" style="width:100.0%"><div class="wk-ev wk-food" style="top:72.0px;height:96.0px"><div class="wk-ev-title">🍳 Goofy Cafe & Dine</div><div class="wk-ev-sub">朝食 / 1831 Ala Moana Blvd</div></div><div class="wk-ev wk-act" style="top:192.0px;height:192.0px"><div class="wk-ev-title">🐢 ウミガメ</div><div class="wk-ev-sub">6名全員・要予約</div></div><div class="wk-ev wk-act" style="top:384.0px;height:192.0px"><div class="wk-ev-title">🏊 プール</div></div><div class="wk-ev wk-food" style="top:492.0px;height:72.0px"><div class="wk-ev-title">🍹 Monkeypod Kitchen</div><div class="wk-ev-sub">ハッピーアワー 16:15〜 / 予約済(OpenTable)</div></div></div></div>
+    </div><div class="wk-col">
+      <div class="wk-colhead"><span class="wk-date">7/26</span><span class="wk-wd">(日)</span></div>
+      <div class="wk-coltrack" style="height:768px"><div class="wk-lane" style="left:0;width:50.0%"><div class="wk-ev wk-act" style="top:48.0px;height:480.0px"><div class="wk-ev-title">🚌 オアフ一周</div><div class="wk-ev-sub">光子・玲子</div></div><div class="wk-ev wk-food" style="top:576.0px;height:72.0px"><div class="wk-ev-title">🍽 夕食</div><div class="wk-ev-sub">井奥家も一緒</div></div></div><div class="wk-lane" style="left:50.0%;width:50.0%"><div class="wk-ev wk-act" style="top:96.0px;height:480.0px"><div class="wk-ev-title">🚙 レンタカー</div><div class="wk-ev-sub">本川家4名・Bellows Beach</div></div></div></div>
+    </div><div class="wk-col">
+      <div class="wk-colhead"><span class="wk-date">7/27</span><span class="wk-wd">(月)</span></div>
+      <div class="wk-coltrack" style="height:768px"><div class="wk-lane" style="width:100.0%"><div class="wk-ev wk-act" style="top:504.0px;height:168.0px"><div class="wk-ev-title">⛵ サンセットクルーズ</div><div class="wk-ev-sub">夕食付き・要予約</div></div></div></div>
+    </div><div class="wk-col">
+      <div class="wk-colhead"><span class="wk-date">7/28</span><span class="wk-wd">(火)</span></div>
+      <div class="wk-coltrack" style="height:768px"><div class="wk-lane" style="width:100.0%"></div></div>
+    </div><div class="wk-col wk-col-special">
+      <div class="wk-colhead"><span class="wk-date">7/29</span><span class="wk-wd">(水)</span><span class="wk-tag">帰国準備日</span></div>
+      <div class="wk-coltrack" style="height:768px"><div class="wk-lane" style="width:100.0%"><div class="wk-ev wk-move" style="top:144.0px;height:96.0px"><div class="wk-ev-title">🏨 チェックアウト</div></div><div class="wk-ev wk-move" style="top:240.0px;height:96.0px"><div class="wk-ev-title">🚗 空港移動</div></div><div class="wk-ev wk-flight" style="top:336.0px;height:432.0px"><div class="wk-ev-title">✈ NH181 飛行中</div><div class="wk-ev-sub">ホノルル13:00発 → 成田16:15着(翌7/30 JST) / 8h15m</div></div></div></div>
+    </div><div class="wk-col">
+      <div class="wk-colhead"><span class="wk-date">7/30</span><span class="wk-wd">(木)</span><span class="wk-tag">帰国</span></div>
+      <div class="wk-coltrack" style="height:768px"><div class="wk-lane" style="width:100.0%"><div class="wk-ev wk-flight" style="top:0px;height:492.0px"><div class="wk-ev-title">✈ NH181 飛行中</div><div class="wk-ev-sub">前日7/29 13:00発の続き（JST）</div></div><div class="wk-ev wk-flight" style="top:492.0px;height:48.0px"><div class="wk-ev-title">🛬 成田T1 到着</div><div class="wk-ev-sub">16:15 JST</div></div></div></div>
+    </div></div>
+</div>
+  </div>
+  <div class="wk-legend">
+    <div class="wk-legend-item"><span class="wk-legend-dot" style="background:var(--ocean)"></span>フライト</div>
+    <div class="wk-legend-item"><span class="wk-legend-dot" style="background:#fff3df"></span>移動・ホテル</div>
+    <div class="wk-legend-item"><span class="wk-legend-dot" style="background:#e9f3e6"></span>アクティビティ</div>
+    <div class="wk-legend-item"><span class="wk-legend-dot" style="background:#fbe9ea"></span>食事</div>
+  </div>
+
+  <!-- TODOリスト -->
+  <div class="section-title">出発前チェックリスト</div>
+  <div class="todo-section">
+    <div class="todo-grid">
+      <div class="todo-item">
+        <div class="todo-check"></div>
+        <div class="todo-text">現地アクティビティ手配</div>
+        <div class="todo-badge">任意</div>
+      </div>
+      <div class="todo-item done">
+        <div class="todo-check">✓</div>
+        <div class="todo-text">スーツケース購入・準備（大輔・薫・優羽 3名分）</div>
+        <div class="todo-badge" style="background:rgba(76,175,80,0.15);color:#388e3c">完了</div>
+      </div>
+      <div class="todo-item done">
+        <div class="todo-check">✓</div>
+        <div class="todo-text">サングラス</div>
+        <div class="todo-badge" style="background:rgba(76,175,80,0.15);color:#388e3c">完了</div>
+      </div>
+      <div class="todo-item done">
+        <div class="todo-check">✓</div>
+        <div class="todo-text">ウォーターシューズ</div>
+        <div class="todo-badge" style="background:rgba(76,175,80,0.15);color:#388e3c">完了</div>
+      </div>
+      <div class="todo-item">
+        <div class="todo-check"></div>
+        <div class="todo-text">常備薬</div>
+        <div class="todo-badge">準備物</div>
+      </div>
+      <div class="todo-item done">
+        <div class="todo-check">✓</div>
+        <div class="todo-text">防水バッグ（スマホ・財布用）</div>
+        <div class="todo-badge" style="background:rgba(76,175,80,0.15);color:#388e3c">完了</div>
+      </div>
+      <div class="todo-item done">
+        <div class="todo-check">✓</div>
+        <div class="todo-text">シュノーケリング用品</div>
+        <div class="todo-badge" style="background:rgba(76,175,80,0.15);color:#388e3c">完了</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 現地調達リスト -->
+  <div class="section-title">現地調達リスト</div>
+  <div style="background:var(--white);border-radius:16px;padding:28px;margin-bottom:32px;border:1px solid rgba(0,0,0,0.06)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px">
+      <div style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--foam);border-radius:10px">
+        <span style="font-size:20px">🛍️</span>
+        <span style="font-size:13px;color:var(--text)">エコバッグ</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--foam);border-radius:10px">
+        <span style="font-size:20px">🚰</span>
+        <span style="font-size:13px;color:var(--text)">マイボトル</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- レストランリスト -->
+  <div class="section-title">おすすめレストラン（ホテルから徒歩・近郊圏内）</div>
+
+  <div class="resto-meal-block">
+    <div class="resto-meal-label">☀ 朝食</div>
+    <div class="resto-grid">
+      <div class="resto-card featured">
+        <div class="resto-name">🥇 Goofy Cafe & Dine - Village</div>
+        <div class="resto-meta">★4.5（4,166件）· 徒歩すぐ · 優先度：高</div>
+        <div class="resto-detail">ヒルトンから徒歩すぐ（Ala Moana Blvd）。ロコモコ・エッグベネディクトが評判で子供にも食べやすいメニュー。7:00〜13:30。</div>
+        <div class="resto-addr">1831 Ala Moana Blvd #201, Honolulu, HI 96815</div>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Sunny's Local Grind</div>
+        <div class="resto-meta">★4.7（862件）· 徒歩約8分</div>
+        <div class="resto-detail">朝食専門・地元っぽい雰囲気。バーガー＋フライドポテトを子供たちでシェアという楽しみ方も。6:00〜15:30。店内が狭いので早めの来店推奨。</div>
+        <div class="resto-addr">464 Ena Rd, Honolulu, HI 96815</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="resto-meal-block">
+    <div class="resto-meal-label">🍽 昼食</div>
+    <div class="resto-grid">
+      <div class="resto-card">
+        <div class="resto-name">Blue Water Shrimp & Seafood</div>
+        <div class="resto-meta">★4.4（2,354件）· ヒルトン敷地内</div>
+        <div class="resto-detail">ヒルトン敷地内なので移動不要。ガーリックシュリンププレートが名物。テラス席でカジュアルに。9:00〜22:00。</div>
+        <div class="resto-addr">2005 Kālia Rd, Honolulu, HI 96815（ヒルトン館内）</div>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Poke Fix Hawaii</div>
+        <div class="resto-meta">★4.8（941件）· 徒歩圏内</div>
+        <div class="resto-detail">地元客も通う本格ポケ専門店。マグロ以外にタコ・エビ等も選べる。11:00〜16:00（水定休）。</div>
+        <div class="resto-addr">Waikiki, Honolulu, HI 96815</div>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Poké Bar（Lewers St）</div>
+        <div class="resto-meta">★4.6（1,846件）· 徒歩約10分</div>
+        <div class="resto-detail">ヒルトン近くでボリューム満点。ライス・サラダから選べてコスパ良好。11:00〜22:00。</div>
+        <div class="resto-addr">Lewers St, Honolulu, HI 96815</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="resto-meal-block">
+    <div class="resto-meal-label">🌅 夕食</div>
+    <div class="resto-grid">
+      <div class="resto-card featured">
+        <div class="resto-name">Duke's Waikiki</div>
+        <div class="resto-meta">★4.4（18,996件）· 徒歩約10分</div>
+        <div class="resto-detail">ビーチフロントの老舗。リブ＆チキンプレート・Hula Pieが名物。6名は電話予約推奨（オンラインは5名まで）。Tel: 808-922-2268。ダイニングルーム（2階）は予約可、Barefoot Bar（1階）はウォークインのみ。</div>
+        <div class="resto-addr">2335 Kalākaua Ave #116, Honolulu, HI 96815</div>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Lulu's Waikiki</div>
+        <div class="resto-meta">★4.4（6,682件）· 徒歩約12分</div>
+        <div class="resto-detail">チキンテンダー・キッズメニュー充実。子供の誕生日祝いにも使われる人気店。ライブ音楽あり。7:00〜24:00。</div>
+        <div class="resto-addr">2586 Kalākaua Ave, Honolulu, HI 96815</div>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Arancino on Beachwalk</div>
+        <div class="resto-meta">徒歩圏内</div>
+        <div class="resto-detail">ファミリースタイルのイタリアン。ウニパスタ・アランチーニ・ピザが名物。ランチセットは$28前後。要予約。11:00〜14:00 / 16:30〜21:30。</div>
+        <div class="resto-addr">255 Beach Walk, Honolulu, HI 96815</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="resto-meal-block">
+    <div class="resto-meal-label">🍹 コスパ枠：ハッピーアワー狙い</div>
+    <div class="resto-grid">
+      <div class="resto-card featured">
+        <div class="resto-name">🥇 Monkeypod Kitchen</div>
+        <div class="resto-meta">15:30〜17:00 · 徒歩約7分 · 優先度：高</div>
+        <div class="resto-detail">ププ最大50%オフ・カクテル$4引き・ビール$2引き。※事前予約必須。</div>
+        <div class="resto-addr">2169 Kālia Rd Unit 111, Honolulu, HI 96815</div>
+      </div>
+      <div class="resto-card featured">
+        <div class="resto-name">🥇 The Cheesecake Factory</div>
+        <div class="resto-meta">月〜金 15:00〜17:00 · 徒歩約14分 · 優先度：高</div>
+        <div class="resto-detail">アボカド春巻き・バーガー等が$9.95均一。※バー席限定・予約不可、待ち時間長め（平日14:00頃が狙い目）。</div>
+        <div class="resto-addr">2301 Kalakaua Ave, Royal Hawaiian Center内</div>
+      </div>
+      <div class="resto-card featured">
+        <div class="resto-name">🥇 Yard House</div>
+        <div class="resto-meta">月〜金 14:00〜17:30 / 日〜水 22:30〜閉店 · 徒歩約9分 · 優先度：高</div>
+        <div class="resto-detail">アペタイザー・全ピザ半額、ドリンク$2引き。子供も飽きないTV・iPadゲームあり。※予約不可、当日優先席リクエスト可。</div>
+        <div class="resto-addr">226 Lewers St #L148, Honolulu, HI 96815</div>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Secret Spot Honolulu</div>
+        <div class="resto-meta">12:00〜19:00 · 徒歩約15分</div>
+        <div class="resto-detail">$5マイタイ・ミモザ等。子供OK・キッズメニューあり。</div>
+        <div class="resto-addr">2299 Kūhiō Ave. Space A, Honolulu, HI 96815</div>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Maui Brewing Co.</div>
+        <div class="resto-meta">15:30〜17:30 · 徒歩約14分</div>
+        <div class="resto-detail">半額アペタイザー。家族向けと明記。</div>
+        <div class="resto-addr">2300 Kalākaua Ave, Honolulu, HI 96815</div>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Hula Grill Waikiki</div>
+        <div class="resto-meta">15:00〜18:00 · 徒歩約15分</div>
+        <div class="resto-detail">Early Eatsメニュー。ポケタコス・スモークアヒディップ等シェア向き。</div>
+        <div class="resto-addr">2335 Kalākaua Ave, Honolulu, HI 96815</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- レンタカー詳細 -->
+  <div class="section-title">ニッポンレンタカー（7/26）予約確定情報</div>
+  <div style="background:var(--white);border-radius:16px;padding:28px;margin-bottom:32px;border:1px solid rgba(0,0,0,0.06)">
+    <div style="display:flex;gap:24px;margin-bottom:20px;flex-wrap:wrap">
+      <div style="flex:1;min-width:240px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">予約番号</div>
+        <div style="background:var(--foam);border-radius:10px;padding:12px 14px;font-family:var(--mono);font-size:13px;color:var(--ocean)">
+          #1496856114（ニッポンレンタカー受付番号）<br>
+          <span style="font-size:11px;color:var(--muted)">参考：旅行会社予約番号 HHV-20260726-20260626-00001167</span>
+        </div>
+      </div>
+      <div style="flex:1;min-width:240px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">乗出し・返却場所</div>
+        <div style="background:var(--foam);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--text)">
+          ヒルトン館内 タパタワー1F カウンター（エンタープライズと同窓口）<br>
+          <span style="font-size:11px;color:var(--muted)">車の受渡し・返却は駐車場ビル5階／2025年に営業所が移転済み</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#fff3df;border-radius:10px;padding:14px 16px;font-size:12px;color:#7a5a1a;line-height:1.9;margin-bottom:16px">
+      <strong>⏰ 当日の時間制限（重要）</strong><br>
+      ・手続き＆お支払いは<strong>8:00〜11:30</strong>のみ受付<br>
+      ・車の乗出しは<strong>8:00〜正午</strong>まで（正午以降はスタッフ不在で借りられません）<br>
+      ・返却は鍵returnボックスにて<strong>24時間いつでも可能</strong>
+    </div>
+
+    <div style="background:#fdeaea;border-radius:10px;padding:14px 16px;font-size:12px;color:#8a3a3a;line-height:1.9">
+      <strong>📋 当日必要なもの（主運転者：大輔さん）</strong><br>
+      ① 日本の運転免許証（<strong>マイナ免許証は不可</strong>・従来型必須）<br>
+      ② 国際免許証（持っていない場合はパスポート原本で代替可）<br>
+      ③ 主運転者ご本人名義のクレジットカード（複数枚持参推奨。日本発行カードが通らないケースが稀にあるため）<br>
+      ④ 免許証・パスポート・クレジットカードの氏名が一致していること
+    </div>
+  </div>
+
+  <!-- Uber乗り場情報 -->
+  <div class="section-title">ホノルル空港 → ホテル（Uber）</div>
+  <div style="background:var(--white);border-radius:16px;padding:28px;margin-bottom:32px;border:1px solid rgba(0,0,0,0.06)">
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px">
+      <div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">アプリ入力（お迎え場所）</div>
+        <div style="background:var(--foam);border-radius:10px;padding:14px 16px;border:1px solid rgba(26,74,107,0.12)">
+          <div style="font-family:var(--mono);font-size:13px;font-weight:500;color:var(--ocean)">HNL Terminal 2 - Rideshare Pickup</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px">または現在地（GPS）をそのまま使用</div>
+        </div>
+        <div style="margin-top:12px">
+          <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">行き先（目的地）</div>
+          <div style="background:var(--foam);border-radius:10px;padding:14px 16px;border:1px solid rgba(26,74,107,0.12)">
+            <div style="font-family:var(--mono);font-size:13px;font-weight:500;color:var(--ocean)">Hilton Hawaiian Village</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:2px">2005 Kalia Road, Honolulu, HI 96815</div>
+          </div>
+        </div>
+        <div style="margin-top:12px">
+          <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">車種</div>
+          <div style="background:#fff3e0;border-radius:10px;padding:12px 16px;border:1px solid rgba(196,146,58,0.2)">
+            <div style="font-size:13px;font-weight:500;color:var(--gold)">🚐 Uber XL を選択</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:2px">6名まで乗車可能・荷物多い場合も安心</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">乗り場までの行き方（T2到着後）</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="min-width:22px;height:22px;border-radius:50%;background:var(--ocean);color:white;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0">1</div>
+            <div style="font-size:12px;color:var(--text);padding-top:2px">入国審査 → Baggage Claimで荷物受取</div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="min-width:22px;height:22px;border-radius:50%;background:var(--ocean);color:white;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0">2</div>
+            <div style="font-size:12px;color:var(--text);padding-top:2px">個人用出口（EXIT）から外へ出る</div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="min-width:22px;height:22px;border-radius:50%;background:var(--ocean);color:white;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0">3</div>
+            <div style="font-size:12px;color:var(--text);padding-top:2px">外の道路中央通路へ進む → <strong>オレンジの「RIDE SHARE」サイン</strong>に従う（2025年10月〜乗り場変更済み）</div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="min-width:22px;height:22px;border-radius:50%;background:var(--ocean);color:white;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0">4</div>
+            <div style="font-size:12px;color:var(--text);padding-top:2px">柱番号45〜46の間、道路を渡った先がUber乗り場</div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="min-width:22px;height:22px;border-radius:50%;background:var(--ocean);color:white;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0">5</div>
+            <div style="font-size:12px;color:var(--text);padding-top:2px">アプリで配車リクエスト → <strong>車種・ナンバーを確認</strong>して乗車</div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="min-width:22px;height:22px;border-radius:50%;background:var(--green);color:white;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0">🏁</div>
+            <div style="font-size:12px;color:var(--text);padding-top:2px">ヒルトン ハワイアン ビレッジまで約20〜30分</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#EAF3DE;border-radius:10px;padding:14px 16px;font-size:12px;color:#3B6D11;line-height:1.9">
+      <strong>📱 日本でやっておくこと（出発前）</strong><br>
+      ① Uberアプリをダウンロード・アカウント作成<br>
+      ② クレジットカードを支払い方法に登録（現地での現金・チップ不要）<br>
+      ③ 行き先「Hilton Hawaiian Village Waikiki」をお気に入り登録しておく<br>
+      ④ 空港Wi-Fiでアプリが使えるよう事前にログイン確認
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  MOTOKAWA FAMILY · HAWAII 2026 · 7.24 — 7.30 · HILTON HAWAIIAN VILLAGE
+</footer>
+
+</body>
+</html>
