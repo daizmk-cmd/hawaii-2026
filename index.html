@@ -787,6 +787,16 @@
     font-size: 9px; cursor: pointer; margin-top: 1px;
   }
   .phrase-ex-en { color: var(--text); }
+  .phrase-chunkcount { font-size: 10px; color: var(--muted); margin-left: 4px; }
+  .phrase-chunkbtn {
+    border: none; padding: 3px 9px; margin: 2px 4px 2px 0; border-radius: 7px; font-size: 12px;
+    display: inline-block; cursor: pointer; font-family: var(--sans);
+  }
+  .pc1 { background: #dce9fb; color: #1d4e89; }
+  .pc2 { background: #ede3fb; color: #5b3e96; }
+  .pc3 { background: var(--foam); color: var(--ocean); }
+  .pc4 { background: #fbefd3; color: #8a5a0a; }
+  .pc5 { background: #fbe1e1; color: #9c3131; }
 </style>
 </head>
 <body>
@@ -1534,60 +1544,106 @@
 (function(){
   var CATS = ["空港・入国審査","ホテル","レストラン","ビーチ・アクティビティ","買い物","車・移動","子供と一緒","困った時","ハワイの現地の言葉"];
   var DATA = [
-  {p:"We're here on vacation.",ph:"ウィアヒアオンヴァケイション",m:"観光で来ました（入国審査の目的確認で）",c:0,ex:["Purpose of your visit? — We're here on vacation, for about a week.","訪問目的は？ — 観光です、1週間ほど滞在します"]},
-  {p:"We're traveling as a family of four.",ph:"ウィアトラベリンアザファミリーオブフォー",m:"家族4人で旅行しています",c:0,ex:["We're traveling as a family of four — my wife, our two kids, and me.","家族4人で旅行しています。妻と子供2人と私です"]},
-  {p:"Where's the baggage claim?",ph:"ウェアザバゲッジクレイム",m:"荷物受け取りはどこですか",c:0,ex:["Excuse me, where's the baggage claim for this flight?","すみません、このフライトの荷物受け取りはどこですか"]},
-  {p:"Where can we pick up the rental car?",ph:"ウェアキャンウィピックアップザレンタルカー",m:"レンタカーはどこで受け取れますか",c:0,ex:["Where can we pick up the rental car? Is there a shuttle?","レンタカーはどこで受け取れますか？シャトルはありますか"]},
+  {p:"We're here on ~",ph:"ウィアヒアオン",m:"~のために来ました（入国審査の目的確認で）",c:0,ex:[["We're here on vacation, for about a week.","観光で来ました、1週間ほど滞在します"],["We're here on a family trip with our kids.","子供たちと家族旅行で来ました"],["We're here on a week-long trip.","1週間の旅行で来ました"]]},
+  {p:"Where's the ~?",ph:"ウェアザ",m:"~はどこですか",c:0,ex:[["Where's the baggage claim?","荷物受け取りはどこですか"],["Where's the rental car counter?","レンタカーのカウンターはどこですか"],["Where's the Uber pickup area?","Uber乗り場はどこですか"]]},
+  {p:"Is there a shuttle to ~?",ph:"イズゼアシャトルトゥ",m:"~へのシャトルはありますか",c:0,ex:[["Is there a shuttle to the rental car center?","レンタカーセンターへのシャトルはありますか"],["Is there a shuttle to the Hilton Hawaiian Village?","ヒルトン・ハワイアン・ビレッジへのシャトルはありますか"],["Is there a shuttle to Terminal 2?","ターミナル2へのシャトルはありますか"]]},
+  {p:"We're traveling with ~",ph:"ウィアトラベリンウィズ",m:"~と一緒に旅行しています",c:0,ex:[["We're traveling with two kids.","子供2人と一緒に旅行しています"],["We're traveling with my parents.","私の両親と一緒に旅行しています"],["We're traveling with six people total.","全部で6人で旅行しています"]]},
 
-  {p:"We have a reservation under Motokawa.",ph:"ウィハヴァレザヴェイションアンダーモトカワ",m:"本川の名前で予約しています",c:1,ex:["We have a reservation under Motokawa, checking in today.","本川の名前で予約しています。今日チェックインです"]},
-  {p:"Could we get a room with two beds?",ph:"クドウィゲッタルームウィズトゥービーズ",m:"ベッド2つの部屋をお願いできますか",c:1,ex:["Could we get a room with two beds for the kids?","子供たちのためにベッド2つの部屋をお願いできますか"]},
-  {p:"What time is check-out?",ph:"ワッタイムイズチェックアウト",m:"チェックアウトは何時ですか",c:1,ex:["What time is check-out tomorrow?","明日のチェックアウトは何時ですか"]},
-  {p:"Is breakfast included?",ph:"イズブレックファストインクルーディッド",m:"朝食は含まれていますか",c:1,ex:["Is breakfast included, and where is it served?","朝食は含まれていますか、どこで提供されますか"]},
-  {p:"Could you recommend a family-friendly restaurant nearby?",ph:"クジュレコメンダファミリーフレンドリーレストラン",m:"近くで子連れでも入りやすいレストランを教えてもらえますか",c:1,ex:["Could you recommend a family-friendly restaurant nearby?","近くで子連れでも入りやすいレストランを教えてもらえますか"]},
+  {p:"We have a reservation under ~.",ph:"ウィハヴァレザヴェイションアンダー",m:"~の名前で予約しています",c:1,ex:[["We have a reservation under Motokawa.","本川の名前で予約しています"],["We have a reservation under Kaoru Motokawa.","本川薫の名前で予約しています"],["We have a reservation for six nights, checking in today.","6泊で予約していて、今日チェックインです"]]},
+  {p:"Could we get ~?",ph:"クドウィゲット",m:"~をお願いできますか",c:1,ex:[["Could we get a room with two beds?","ベッド2つの部屋をお願いできますか"],["Could we get a room with an ocean view?","オーシャンビューの部屋をお願いできますか"],["Could we get a late check-out?","遅めのチェックアウトをお願いできますか"]]},
+  {p:"What time is ~?",ph:"ワッタイムイズ",m:"~は何時ですか",c:1,ex:[["What time is check-out?","チェックアウトは何時ですか"],["What time is the pool open until?","プールは何時まで開いていますか"],["What time is the fireworks show?","花火は何時ですか"]]},
+  {p:"Could you recommend ~?",ph:"クジュレコメンド",m:"~を教えてもらえますか（おすすめ）",c:1,ex:[["Could you recommend a family-friendly restaurant nearby?","近くで子連れでも入りやすいレストランを教えてもらえますか"],["Could you recommend a quiet beach for kids?","子供向けの静かなビーチを教えてもらえますか"],["Could you recommend a good spot to watch the sunset?","夕日を見るのに良い場所を教えてもらえますか"]]},
 
-  {p:"Table for four, please.",ph:"テーブルフォーフォープリーズ",m:"4名でお願いします",c:2,ex:["Table for four, please — two adults and two kids.","4名でお願いします、大人2人と子供2人です"]},
-  {p:"Do you have a kids' menu?",ph:"デュハヴァキッズメニュー",m:"キッズメニューはありますか",c:2,ex:["Do you have a kids' menu or smaller portions?","キッズメニューか少なめの量はありますか"]},
-  {p:"Could we get a high chair?",ph:"クドウィゲッタハイチェア",m:"子供用の椅子をお願いできますか",c:2,ex:["Could we get a high chair for our little one?","下の子のために子供用の椅子をお願いできますか"]},
-  {p:"Is this dish spicy?",ph:"イズディスディッシュスパイシー",m:"この料理は辛いですか",c:2,ex:["Is this dish spicy? The kids can't handle spicy food.","この料理は辛いですか？子供たちは辛いのが苦手なので"]},
-  {p:"Could we get the check, please?",ph:"クドウィゲッザチェックプリーズ",m:"お会計をお願いします",c:2,ex:["Could we get the check, please? Separate or together is fine.","お会計をお願いします。別々でもまとめてでも大丈夫です"]},
+  {p:"Table for ~, please.",ph:"テーブルフォー・プリーズ",m:"~名でお願いします",c:2,ex:[["Table for four, please.","4名でお願いします"],["Table for six, please — two are kids.","6名でお願いします、うち2人は子供です"],["Table for two, please, by the window if possible.","できれば窓際で2名お願いします"]]},
+  {p:"Do you have ~?",ph:"デュハヴ",m:"~はありますか",c:2,ex:[["Do you have a kids' menu?","キッズメニューはありますか"],["Do you have a table outside?","外の席はありますか"],["Do you have a high chair?","子供用の椅子はありますか"]]},
+  {p:"What do you recommend for ~?",ph:"ワッジュレコメンドフォー",m:"~のおすすめは何ですか",c:2,ex:[["What do you recommend for dinner?","夕食のおすすめは何ですか"],["What do you recommend for someone who loves seafood?","シーフード好きにおすすめは何ですか"],["What do you recommend for the kids?","子供向けのおすすめは何ですか"]]},
+  {p:"How much is ~?",ph:"ハウマッチイズ",m:"~はいくらですか",c:2,ex:[["How much is the garlic shrimp plate?","ガーリックシュリンププレートはいくらですか"],["How much is this per person?","これは1人あたりいくらですか"],["How much is the kids' portion?","子供用の量はいくらですか"]]},
+  {p:"Is this ~?",ph:"イズディス",m:"これは~ですか",c:2,ex:[["Is this dish spicy?","この料理は辛いですか"],["Is this seat taken?","この席は空いていますか"],["Is this included in the set?","これはセットに含まれていますか"]]},
 
-  {p:"Is it safe for kids to swim here?",ph:"イズイットセイフフォーキッズトゥスウィムヒア",m:"ここは子供が泳いでも安全ですか",c:3,ex:["Is it safe for kids to swim here, or is the current strong?","ここは子供が泳いでも安全ですか、それとも流れが強いですか"]},
-  {p:"Can we rent snorkeling gear here?",ph:"キャンウィレントスノーケリングギアヒア",m:"シュノーケリング用具はここで借りられますか",c:3,ex:["Can we rent snorkeling gear here, including kids' sizes?","シュノーケリング用具はここで借りられますか、子供サイズも含めて"]},
-  {p:"Do you offer lessons for beginners?",ph:"デュオファーレッスンズフォービギナーズ",m:"初心者向けのレッスンはありますか",c:3,ex:["Do you offer surfing lessons for beginners, kids included?","初心者向けのサーフィンレッスンはありますか、子供も含めて"]},
-  {p:"What time does the sun set today?",ph:"ワッタイムダズザサンセットトゥデイ",m:"今日の日没は何時ですか",c:3,ex:["What time does the sun set today? We want to catch it from the beach.","今日の日没は何時ですか？ビーチで見たいので"]},
-  {p:"How rough are the waves today?",ph:"ハウラフアーザウェイヴズトゥデイ",m:"今日の波はどのくらい荒いですか",c:3,ex:["How rough are the waves today? Is it okay for young kids?","今日の波はどのくらい荒いですか？小さい子供でも大丈夫ですか"]},
+  {p:"Is it safe for kids to ~?",ph:"イズイットセイフフォーキッズトゥ",m:"子供が~しても安全ですか",c:3,ex:[["Is it safe for kids to swim here?","ここは子供が泳いでも安全ですか"],["Is it safe for kids to snorkel here?","ここは子供がシュノーケリングしても安全ですか"],["Is it safe for kids to walk on the reef?","サンゴ礁の上を子供が歩いても安全ですか"]]},
+  {p:"Can we rent ~ here?",ph:"キャンウィレント・ヒア",m:"~はここで借りられますか",c:3,ex:[["Can we rent snorkeling gear here?","シュノーケリング用具はここで借りられますか"],["Can we rent beach chairs here?","ビーチチェアはここで借りられますか"],["Can we rent a stroller here?","ベビーカーはここで借りられますか"]]},
+  {p:"Do you offer ~?",ph:"デュオファー",m:"~はありますか（サービス・レッスン）",c:3,ex:[["Do you offer surfing lessons for beginners?","初心者向けのサーフィンレッスンはありますか"],["Do you offer a kids' program?","子供向けのプログラムはありますか"],["Do you offer a sunset cruise?","サンセットクルーズはありますか"]]},
+  {p:"How ~ is it today?",ph:"ハウ・イズイットトゥデイ",m:"今日はどのくらい~ですか",c:3,ex:[["How rough is the ocean today?","今日は海はどのくらい荒れていますか"],["How crowded is the beach today?","今日はビーチはどのくらい混んでいますか"],["How hot is it today?","今日はどのくらい暑いですか"]]},
 
-  {p:"Do you have this in a smaller size?",ph:"デュハヴディスインアスモーラーサイズ",m:"これのもっと小さいサイズはありますか",c:4,ex:["Do you have this in a smaller size, for a kid around six?","これの6歳くらいの子供向けの小さいサイズはありますか"]},
-  {p:"Can I try this on?",ph:"キャナイトライディスオン",m:"試着してもいいですか",c:4,ex:["Can I try this on? Where's the fitting room?","試着してもいいですか？試着室はどこですか"]},
-  {p:"Do you take credit cards?",ph:"デュテイククレジットカーズ",m:"クレジットカードは使えますか",c:4,ex:["Do you take credit cards, or cash only?","クレジットカードは使えますか、それとも現金のみですか"]},
-  {p:"Is tax included in the price?",ph:"イズタックスインクルーディッドインザプライス",m:"この価格に税金は含まれていますか",c:4,ex:["Is tax included in the price, or added at checkout?","この価格に税金は含まれていますか、それともレジで加算されますか"]},
+  {p:"Do you have this in ~?",ph:"デュハヴディスイン",m:"これの~はありますか",c:4,ex:[["Do you have this in a smaller size?","これの小さいサイズはありますか"],["Do you have this in a different color?","これの違う色はありますか"],["Do you have this in kids' sizes?","これの子供サイズはありますか"]]},
+  {p:"How much is ~?",ph:"ハウマッチイズ",m:"~はいくらですか",c:4,ex:[["How much is this?","これはいくらですか"],["How much is the shave ice?","シェイブアイスはいくらですか"],["How much is shipping to Japan?","日本への発送料はいくらですか"]]},
+  {p:"Can I try ~ on?",ph:"キャナイトライ・オン",m:"~を試着してもいいですか",c:4,ex:[["Can I try this on?","これを試着してもいいですか"],["Can I try the blue one on?","青いのを試着してもいいですか"],["Can I try a bigger size on?","もう少し大きいサイズを試着してもいいですか"]]},
+  {p:"Do you take ~?",ph:"デュテイク",m:"~は使えますか（支払い方法）",c:4,ex:[["Do you take credit cards?","クレジットカードは使えますか"],["Do you take Apple Pay?","Apple Payは使えますか"],["Do you take cash?","現金は使えますか"]]},
 
-  {p:"How do we get to Waikiki from here?",ph:"ハウドゥウィゲットゥワイキキフロムヒア",m:"ここからワイキキへはどう行けばいいですか",c:5,ex:["How do we get to Waikiki from here by car?","ここから車でワイキキへはどう行けばいいですか"]},
-  {p:"Is parking free here?",ph:"イズパーキングフリーヒア",m:"ここの駐車場は無料ですか",c:5,ex:["Is parking free here, or is there a fee?","ここの駐車場は無料ですか、それとも料金がかかりますか"]},
-  {p:"How long does it take to get there?",ph:"ハウロングダズイットテイクトゥゲットゼア",m:"そこまでどのくらい時間がかかりますか",c:5,ex:["How long does it take to get there by car with kids?","子供連れで車だとそこまでどのくらい時間がかかりますか"]},
-  {p:"Which lane should we be in?",ph:"ウィッチレインシュドウィビーイン",m:"どの車線に入ればいいですか",c:5,ex:["Which lane should we be in for the freeway?","フリーウェイに乗るにはどの車線に入ればいいですか"]},
+  {p:"How do I get to ~?",ph:"ハウドゥアイゲットトゥ",m:"~への行き方を教えてください",c:5,ex:[["How do I get to Ala Moana Center?","アラモアナセンターへの行き方を教えてください"],["How do I get to Diamond Head from here?","ここからダイヤモンドヘッドへの行き方を教えてください"],["How do I get to Waikiki Beach?","ワイキキビーチへの行き方を教えてください"]]},
+  {p:"Is ~ free here?",ph:"イズ・フリーヒア",m:"ここの~は無料ですか",c:5,ex:[["Is parking free here?","ここの駐車場は無料ですか"],["Is Wi-Fi free here?","ここのWi-Fiは無料ですか"],["Is the shuttle free here?","ここのシャトルは無料ですか"]]},
+  {p:"How long does it take to get to ~?",ph:"ハウロングダズイットテイクトゥゲットトゥ",m:"~までどのくらい時間がかかりますか",c:5,ex:[["How long does it take to get to the airport?","空港までどのくらい時間がかかりますか"],["How long does it take to get to Bellows Beach?","ベローズビーチまでどのくらい時間がかかりますか"],["How long does it take to get to the North Shore?","ノースショアまでどのくらい時間がかかりますか"]]},
+  {p:"Which ~ should we take?",ph:"ウィッチ・シュドウィテイク",m:"どの~に乗ればいいですか",c:5,ex:[["Which bus should we take to get there?","そこへ行くにはどのバスに乗ればいいですか"],["Which lane should we take for the freeway?","フリーウェイに乗るにはどの車線を通ればいいですか"],["Which exit should we take?","どの出口で降りればいいですか"]]},
 
-  {p:"Where's the restroom?",ph:"ウェアザレストルーム",m:"お手洗いはどこですか",c:6,ex:["Where's the restroom? My son needs to go.","お手洗いはどこですか？息子が行きたがっています"]},
-  {p:"Is there a kids' pool?",ph:"イズゼアアキッズプール",m:"子供用のプールはありますか",c:6,ex:["Is there a kids' pool that's shallow and safe?","浅くて安全な子供用のプールはありますか"]},
-  {p:"Do you have a children's discount?",ph:"デュハヴァチルドレンズディスカウント",m:"子供料金の割引はありますか",c:6,ex:["Do you have a children's discount for this tour?","このツアーに子供料金の割引はありますか"]},
-  {p:"Is this ride okay for young kids?",ph:"イズディスライドオウケイフォーヤングキッズ",m:"このアトラクションは小さい子供でも大丈夫ですか",c:6,ex:["Is this ride okay for young kids, or is there a height limit?","このアトラクションは小さい子供でも大丈夫ですか、身長制限はありますか"]},
+  {p:"Is there a ~ for kids?",ph:"イズゼアア・フォーキッズ",m:"子供向けの~はありますか",c:6,ex:[["Is there a pool for kids?","子供向けのプールはありますか"],["Is there a discount for kids?","子供向けの割引はありますか"],["Is there a play area for kids?","子供向けの遊び場はありますか"]]},
+  {p:"Where's the ~?",ph:"ウェアザ",m:"~はどこですか",c:6,ex:[["Where's the restroom? My son needs to go.","お手洗いはどこですか？息子が行きたがっています"],["Where's the nearest ice cream shop?","一番近いアイスクリーム屋さんはどこですか"],["Where's the kids' pool?","子供用プールはどこですか"]]},
+  {p:"Is this ~ okay for young kids?",ph:"イズディス・オウケイフォーヤングキッズ",m:"これは小さい子供でも~大丈夫ですか",c:6,ex:[["Is this ride okay for young kids?","このアトラクションは小さい子供でも大丈夫ですか"],["Is this trail okay for young kids?","このトレイルは小さい子供でも大丈夫ですか"],["Is this water okay for young kids?","この水は小さい子供でも大丈夫ですか"]]},
 
-  {p:"I can't find my child, can you help?",ph:"アイキャントファインドマイチャイルドキャニューヘルプ",m:"子供が見当たりません、助けてもらえますか",c:7,ex:["Excuse me, I can't find my son, can you help me?","すみません、息子が見当たりません、助けてもらえますか"]},
-  {p:"Where's the nearest pharmacy?",ph:"ウェアザニアレストファーマシー",m:"一番近い薬局はどこですか",c:7,ex:["Where's the nearest pharmacy? My daughter has a fever.","一番近い薬局はどこですか？娘が熱を出しています"]},
-  {p:"Can you call a doctor?",ph:"キャニューコーラダクター",m:"お医者さんを呼んでもらえますか",c:7,ex:["Can you call a doctor? My kid got stung by something.","お医者さんを呼んでもらえますか？子供が何かに刺されました"]},
-  {p:"I think we're lost.",ph:"アイスィンクウィアロスト",m:"道に迷ったと思います",c:7,ex:["I think we're lost, could you show us on the map?","道に迷ったと思います、地図で教えてもらえますか"]},
+  {p:"Can you help me ~?",ph:"キャニューヘルプミー",m:"~するのを手伝ってもらえますか",c:7,ex:[["Can you help me find my child?","子供を探すのを手伝ってもらえますか"],["Can you help me call a taxi?","タクシーを呼ぶのを手伝ってもらえますか"],["Can you help me with directions?","道案内を手伝ってもらえますか"]]},
+  {p:"Where's the nearest ~?",ph:"ウェアザニアレスト",m:"一番近い~はどこですか",c:7,ex:[["Where's the nearest pharmacy?","一番近い薬局はどこですか"],["Where's the nearest hospital?","一番近い病院はどこですか"],["Where's the nearest police station?","一番近い交番はどこですか"]]},
+  {p:"I think we ~.",ph:"アイスィンクウィ",m:"~したと思います",c:7,ex:[["I think we're lost.","道に迷ったと思います"],["I think we missed the bus.","バスに乗り遅れたと思います"],["I think we left something at the restaurant.","レストランに忘れ物をしたと思います"]]},
 
-  {p:"Aloha",ph:"アロハ",m:"こんにちは／さようなら／愛（挨拶全般に使われる万能語）",c:8,ex:["Aloha! Welcome to Hawaii.","アロハ！ハワイへようこそ"]},
-  {p:"Mahalo",ph:"マハロ",m:"ありがとう",c:8,ex:["Mahalo for your help today.","今日は助けてくれてありがとう"]},
-  {p:"Ohana",ph:"オハナ",m:"家族（血縁に限らず、大切な仲間も含む）",c:8,ex:["We're here as one big ohana.","私たちは一つの大きな家族として来ています"]},
-  {p:"Keiki",ph:"ケイキ",m:"子供",c:8,ex:["Is this beach good for keiki?","このビーチは子供にとって良い場所ですか"]},
-  {p:"Shaka",ph:"シャカ",m:"親指と小指を立てるハワイのハンドサイン（気さくな挨拶・感謝の意）",c:8,ex:["The lifeguard gave us a shaka as we paddled out.","ライフガードが漕ぎ出す私たちにシャカサインをしてくれた"]},
-  {p:"Mālama",ph:"マラマ",m:"大切にする、守る（\"Mālama Hawaii\"=ハワイを大切にという観光メッセージ）",c:8,ex:["Let's mālama the reef while we snorkel.","シュノーケリング中はサンゴ礁を大切にしよう"]},
-  {p:"Pau hana",ph:"パウハナ",m:"仕事終わり、一日の終わりにくつろぐ時間",c:8,ex:["Time for pau hana — let's watch the sunset.","仕事終わりの時間だ、夕日を見よう"]},
-  {p:"Kōkua",ph:"ココウア",m:"助け、協力",c:8,ex:["Mahalo for your kōkua with our bags.","荷物を手伝ってくれてありがとう"]}
+  {p:"Aloha",ph:"アロハ",m:"こんにちは／さようなら／愛（挨拶全般に使われる万能語）",c:8,ex:[["Aloha! Welcome to Hawaii.","アロハ！ハワイへようこそ"],["Aloha, how are you today?","アロハ、今日はどう？"]]},
+  {p:"Mahalo",ph:"マハロ",m:"ありがとう",c:8,ex:[["Mahalo for your help today.","今日は助けてくれてありがとう"],["Mahalo, that was delicious.","ありがとう、美味しかったです"]]},
+  {p:"Ohana",ph:"オハナ",m:"家族（血縁に限らず、大切な仲間も含む）",c:8,ex:[["We're here as one big ohana.","私たちは一つの大きな家族として来ています"],["Ohana means no one gets left behind.","オハナとは誰も置いていかないという意味"]]},
+  {p:"Keiki",ph:"ケイキ",m:"子供",c:8,ex:[["Is this beach good for keiki?","このビーチは子供にとって良い場所ですか"],["The keiki menu has smaller portions.","子供メニューは量が少なめです"]]},
+  {p:"Shaka",ph:"シャカ",m:"親指と小指を立てるハワイのハンドサイン（気さくな挨拶・感謝の意）",c:8,ex:[["The lifeguard gave us a shaka as we paddled out.","ライフガードが漕ぎ出す私たちにシャカサインをしてくれた"],["He threw a shaka and smiled.","彼はシャカサインをして微笑んだ"]]},
+  {p:"Mālama",ph:"マラマ",m:"大切にする、守る（\"Mālama Hawaii\"=ハワイを大切にという観光メッセージ）",c:8,ex:[["Let's mālama the reef while we snorkel.","シュノーケリング中はサンゴ礁を大切にしよう"],["Mālama the land, and it will mālama you.","土地を大切にすれば、土地もあなたを守ってくれる"]]},
+  {p:"Pau hana",ph:"パウハナ",m:"仕事終わり、一日の終わりにくつろぐ時間",c:8,ex:[["Time for pau hana — let's watch the sunset.","仕事終わりの時間だ、夕日を見よう"],["We grabbed drinks for pau hana.","仕事終わりに一杯飲みに行った"]]},
+  {p:"Kōkua",ph:"ココウア",m:"助け、協力",c:8,ex:[["Mahalo for your kōkua with our bags.","荷物を手伝ってくれてありがとう"],["We could use a little kōkua here.","ここでちょっと助けが必要です"]]}
   ];
 
   function escapeAttr(s){ return s.replace(/&/g,"&amp;").replace(/"/g,"&quot;"); }
+  function packageCore(phrase){
+    var i = phrase.indexOf("~");
+    var core = i >= 0 ? phrase.slice(0, i) : phrase;
+    return core.trim().replace(/[\s,]+$/, "");
+  }
+  var CHUNK_ROLES = ["pc1","pc2","pc3","pc4","pc5"];
+  var BOUNDARY_WORDS = ["to","for","before","after","with","about","in","on","at","by","from","of","during","since","until","because","if","when","while","that","than","so","though","but","through","under","over","without","within","toward","against"];
+  function splitPart(part){
+    if(!part) return [];
+    var commaParts = part.split(/,\s*/).filter(Boolean);
+    var out = [];
+    commaParts.forEach(function(cp){
+      var words = cp.split(" ").filter(Boolean);
+      var cur = [];
+      words.forEach(function(w, i){
+        var lw = w.toLowerCase().replace(/[.?!]/g,"");
+        if(i>0 && cur.length>=2 && BOUNDARY_WORDS.indexOf(lw)>-1){
+          out.push(cur.join(" "));
+          cur=[w];
+        } else {
+          cur.push(w);
+        }
+      });
+      if(cur.length) out.push(cur.join(" "));
+    });
+    return out;
+  }
+  function chunkSentence(sentence, headCore){
+    if(!headCore) return splitPart(sentence);
+    var lowSent = sentence.toLowerCase();
+    var lowHead = headCore.toLowerCase();
+    var idx = lowSent.indexOf(lowHead);
+    if(idx < 0) return splitPart(sentence);
+    var pre = sentence.slice(0, idx).trim();
+    var head = sentence.slice(idx, idx + headCore.length);
+    var post = sentence.slice(idx + headCore.length).trim();
+    var chunks = [];
+    chunks = chunks.concat(splitPart(pre));
+    chunks.push(head);
+    chunks = chunks.concat(splitPart(post));
+    return chunks.filter(function(c){ return c && c.trim().length>0; });
+  }
+  function chunkButtonsHtml(sentence, headCore){
+    var chunks = chunkSentence(sentence, headCore);
+    var btns = chunks.map(function(c,i){
+      var role = CHUNK_ROLES[i % CHUNK_ROLES.length];
+      return '<button type="button" class="phrase-chunkbtn ' + role + '" data-text="' + escapeAttr(c) + '">' + c + '</button>';
+    }).join("");
+    return {html: btns, count: chunks.length};
+  }
 
   var EXCLUDED_VOICE_NAMES = ["albert","bad news","bahh","boing","bubbles","cellos","fred","good news","junior","kathy","ralph","ささやき声","オルガン","スーパースター","トリノイド","ベル","道化","震え","zarvox","grandma","grandpa","rocko","sandy","samantha"];
   var voiceList = [];
@@ -1655,22 +1711,28 @@
   function renderPhrases(){
     gridEl.innerHTML = DATA.map(function(item, idx){
       if(currentCat >= 0 && item.c !== currentCat) return "";
+      var core = packageCore(item.p);
+      var exHtml = item.ex.map(function(e){
+        var cb = chunkButtonsHtml(e[0], core);
+        return '<div class="phrase-ex">' +
+          '<button type="button" class="phrase-ex-play" data-text="'+escapeAttr(e[0])+'" aria-label="例文を聞く">▶</button>' +
+          '<div><div>' + cb.html + '<span class="phrase-chunkcount">（'+cb.count+'チャンク）</span></div>' +
+          '<div class="phrase-jp" style="margin-top:4px">' + e[1] + '</div></div>' +
+        '</div>';
+      }).join("");
       return '<div class="phrase-card">' +
         '<div class="phrase-head">' +
-          '<button type="button" class="phrase-play" data-text="'+escapeAttr(item.p)+'" aria-label="発音を聞く">▶</button>' +
+          '<button type="button" class="phrase-play" data-text="'+escapeAttr(core)+'" aria-label="発音を聞く">▶</button>' +
           '<div>' +
             '<div class="phrase-en">'+item.p+'</div>' +
             '<div class="phrase-ph">'+item.ph+'</div>' +
             '<div class="phrase-jp">'+item.m+'</div>' +
           '</div>' +
         '</div>' +
-        '<div class="phrase-ex">' +
-          '<button type="button" class="phrase-ex-play" data-text="'+escapeAttr(item.ex[0])+'" aria-label="例文を聞く">▶</button>' +
-          '<div><span class="phrase-ex-en">'+item.ex[0]+'</span><br>'+item.ex[1]+'</div>' +
-        '</div>' +
+        exHtml +
       '</div>';
     }).join("");
-    gridEl.querySelectorAll(".phrase-play, .phrase-ex-play").forEach(function(btn){
+    gridEl.querySelectorAll(".phrase-play, .phrase-ex-play, .phrase-chunkbtn").forEach(function(btn){
       btn.addEventListener("click", function(){ speak(btn.getAttribute("data-text")); });
     });
   }
