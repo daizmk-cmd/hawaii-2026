@@ -759,6 +759,34 @@
     body { background: white; }
     .hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
+
+  /* 使えるフレーズ集 */
+  .phrase-note { font-size: 12px; color: var(--muted); margin: -8px 0 20px; }
+  .phrase-chips { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 20px; -webkit-overflow-scrolling: touch; }
+  .phrase-chip {
+    flex: 0 0 auto; padding: 6px 14px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.08);
+    background: var(--white); color: var(--muted); font-size: 12px; font-family: var(--sans);
+    cursor: pointer; white-space: nowrap;
+  }
+  .phrase-chip.active { background: var(--ocean); border-color: var(--ocean); color: var(--white); }
+  .phrase-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-bottom: 32px; }
+  .phrase-card { background: var(--white); border-radius: 14px; padding: 16px 18px; border: 1px solid rgba(0,0,0,0.06); }
+  .phrase-head { display: flex; align-items: flex-start; gap: 10px; }
+  .phrase-play {
+    flex: 0 0 auto; width: 28px; height: 28px; border-radius: 50%; border: 1px solid rgba(26,74,107,0.2);
+    background: var(--foam); color: var(--ocean); display: flex; align-items: center; justify-content: center;
+    font-size: 11px; cursor: pointer; margin-top: 2px;
+  }
+  .phrase-en { font-family: var(--serif); font-size: 17px; font-weight: 500; color: var(--text); line-height: 1.3; }
+  .phrase-ph { font-family: var(--mono); font-size: 10px; color: var(--muted); margin-top: 5px; letter-spacing: 0.2px; }
+  .phrase-jp { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .phrase-ex { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--sand2); font-size: 11px; color: var(--muted); line-height: 1.5; display: flex; gap: 8px; align-items: flex-start; }
+  .phrase-ex-play {
+    flex: 0 0 auto; width: 20px; height: 20px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.08);
+    background: var(--sand); color: var(--ocean); display: flex; align-items: center; justify-content: center;
+    font-size: 9px; cursor: pointer; margin-top: 1px;
+  }
+  .phrase-ex-en { color: var(--text); }
 </style>
 </head>
 <body>
@@ -1490,11 +1518,163 @@
     </div>
   </div>
 
+  <!-- 使えるフレーズ集 -->
+  <div class="section-title">🌺 旅先で使える英語フレーズ</div>
+  <p class="phrase-note">空港・ホテル・レストランなど場面別に厳選。▶ボタンで発音を再生できます。</p>
+  <div class="phrase-chips" id="phraseChips"></div>
+  <div class="phrase-grid" id="phraseGrid"></div>
+
 </main>
 
 <footer>
   MOTOKAWA FAMILY · HAWAII 2026 · 7.24 — 7.30 · HILTON HAWAIIAN VILLAGE
 </footer>
+
+<script>
+(function(){
+  var CATS = ["空港・入国審査","ホテル","レストラン","ビーチ・アクティビティ","買い物","車・移動","子供と一緒","困った時","ハワイの現地の言葉"];
+  var DATA = [
+  {p:"We're here on vacation.",ph:"ウィアヒアオンヴァケイション",m:"観光で来ました（入国審査の目的確認で）",c:0,ex:["Purpose of your visit? — We're here on vacation, for about a week.","訪問目的は？ — 観光です、1週間ほど滞在します"]},
+  {p:"We're traveling as a family of four.",ph:"ウィアトラベリンアザファミリーオブフォー",m:"家族4人で旅行しています",c:0,ex:["We're traveling as a family of four — my wife, our two kids, and me.","家族4人で旅行しています。妻と子供2人と私です"]},
+  {p:"Where's the baggage claim?",ph:"ウェアザバゲッジクレイム",m:"荷物受け取りはどこですか",c:0,ex:["Excuse me, where's the baggage claim for this flight?","すみません、このフライトの荷物受け取りはどこですか"]},
+  {p:"Where can we pick up the rental car?",ph:"ウェアキャンウィピックアップザレンタルカー",m:"レンタカーはどこで受け取れますか",c:0,ex:["Where can we pick up the rental car? Is there a shuttle?","レンタカーはどこで受け取れますか？シャトルはありますか"]},
+
+  {p:"We have a reservation under Motokawa.",ph:"ウィハヴァレザヴェイションアンダーモトカワ",m:"本川の名前で予約しています",c:1,ex:["We have a reservation under Motokawa, checking in today.","本川の名前で予約しています。今日チェックインです"]},
+  {p:"Could we get a room with two beds?",ph:"クドウィゲッタルームウィズトゥービーズ",m:"ベッド2つの部屋をお願いできますか",c:1,ex:["Could we get a room with two beds for the kids?","子供たちのためにベッド2つの部屋をお願いできますか"]},
+  {p:"What time is check-out?",ph:"ワッタイムイズチェックアウト",m:"チェックアウトは何時ですか",c:1,ex:["What time is check-out tomorrow?","明日のチェックアウトは何時ですか"]},
+  {p:"Is breakfast included?",ph:"イズブレックファストインクルーディッド",m:"朝食は含まれていますか",c:1,ex:["Is breakfast included, and where is it served?","朝食は含まれていますか、どこで提供されますか"]},
+  {p:"Could you recommend a family-friendly restaurant nearby?",ph:"クジュレコメンダファミリーフレンドリーレストラン",m:"近くで子連れでも入りやすいレストランを教えてもらえますか",c:1,ex:["Could you recommend a family-friendly restaurant nearby?","近くで子連れでも入りやすいレストランを教えてもらえますか"]},
+
+  {p:"Table for four, please.",ph:"テーブルフォーフォープリーズ",m:"4名でお願いします",c:2,ex:["Table for four, please — two adults and two kids.","4名でお願いします、大人2人と子供2人です"]},
+  {p:"Do you have a kids' menu?",ph:"デュハヴァキッズメニュー",m:"キッズメニューはありますか",c:2,ex:["Do you have a kids' menu or smaller portions?","キッズメニューか少なめの量はありますか"]},
+  {p:"Could we get a high chair?",ph:"クドウィゲッタハイチェア",m:"子供用の椅子をお願いできますか",c:2,ex:["Could we get a high chair for our little one?","下の子のために子供用の椅子をお願いできますか"]},
+  {p:"Is this dish spicy?",ph:"イズディスディッシュスパイシー",m:"この料理は辛いですか",c:2,ex:["Is this dish spicy? The kids can't handle spicy food.","この料理は辛いですか？子供たちは辛いのが苦手なので"]},
+  {p:"Could we get the check, please?",ph:"クドウィゲッザチェックプリーズ",m:"お会計をお願いします",c:2,ex:["Could we get the check, please? Separate or together is fine.","お会計をお願いします。別々でもまとめてでも大丈夫です"]},
+
+  {p:"Is it safe for kids to swim here?",ph:"イズイットセイフフォーキッズトゥスウィムヒア",m:"ここは子供が泳いでも安全ですか",c:3,ex:["Is it safe for kids to swim here, or is the current strong?","ここは子供が泳いでも安全ですか、それとも流れが強いですか"]},
+  {p:"Can we rent snorkeling gear here?",ph:"キャンウィレントスノーケリングギアヒア",m:"シュノーケリング用具はここで借りられますか",c:3,ex:["Can we rent snorkeling gear here, including kids' sizes?","シュノーケリング用具はここで借りられますか、子供サイズも含めて"]},
+  {p:"Do you offer lessons for beginners?",ph:"デュオファーレッスンズフォービギナーズ",m:"初心者向けのレッスンはありますか",c:3,ex:["Do you offer surfing lessons for beginners, kids included?","初心者向けのサーフィンレッスンはありますか、子供も含めて"]},
+  {p:"What time does the sun set today?",ph:"ワッタイムダズザサンセットトゥデイ",m:"今日の日没は何時ですか",c:3,ex:["What time does the sun set today? We want to catch it from the beach.","今日の日没は何時ですか？ビーチで見たいので"]},
+  {p:"How rough are the waves today?",ph:"ハウラフアーザウェイヴズトゥデイ",m:"今日の波はどのくらい荒いですか",c:3,ex:["How rough are the waves today? Is it okay for young kids?","今日の波はどのくらい荒いですか？小さい子供でも大丈夫ですか"]},
+
+  {p:"Do you have this in a smaller size?",ph:"デュハヴディスインアスモーラーサイズ",m:"これのもっと小さいサイズはありますか",c:4,ex:["Do you have this in a smaller size, for a kid around six?","これの6歳くらいの子供向けの小さいサイズはありますか"]},
+  {p:"Can I try this on?",ph:"キャナイトライディスオン",m:"試着してもいいですか",c:4,ex:["Can I try this on? Where's the fitting room?","試着してもいいですか？試着室はどこですか"]},
+  {p:"Do you take credit cards?",ph:"デュテイククレジットカーズ",m:"クレジットカードは使えますか",c:4,ex:["Do you take credit cards, or cash only?","クレジットカードは使えますか、それとも現金のみですか"]},
+  {p:"Is tax included in the price?",ph:"イズタックスインクルーディッドインザプライス",m:"この価格に税金は含まれていますか",c:4,ex:["Is tax included in the price, or added at checkout?","この価格に税金は含まれていますか、それともレジで加算されますか"]},
+
+  {p:"How do we get to Waikiki from here?",ph:"ハウドゥウィゲットゥワイキキフロムヒア",m:"ここからワイキキへはどう行けばいいですか",c:5,ex:["How do we get to Waikiki from here by car?","ここから車でワイキキへはどう行けばいいですか"]},
+  {p:"Is parking free here?",ph:"イズパーキングフリーヒア",m:"ここの駐車場は無料ですか",c:5,ex:["Is parking free here, or is there a fee?","ここの駐車場は無料ですか、それとも料金がかかりますか"]},
+  {p:"How long does it take to get there?",ph:"ハウロングダズイットテイクトゥゲットゼア",m:"そこまでどのくらい時間がかかりますか",c:5,ex:["How long does it take to get there by car with kids?","子供連れで車だとそこまでどのくらい時間がかかりますか"]},
+  {p:"Which lane should we be in?",ph:"ウィッチレインシュドウィビーイン",m:"どの車線に入ればいいですか",c:5,ex:["Which lane should we be in for the freeway?","フリーウェイに乗るにはどの車線に入ればいいですか"]},
+
+  {p:"Where's the restroom?",ph:"ウェアザレストルーム",m:"お手洗いはどこですか",c:6,ex:["Where's the restroom? My son needs to go.","お手洗いはどこですか？息子が行きたがっています"]},
+  {p:"Is there a kids' pool?",ph:"イズゼアアキッズプール",m:"子供用のプールはありますか",c:6,ex:["Is there a kids' pool that's shallow and safe?","浅くて安全な子供用のプールはありますか"]},
+  {p:"Do you have a children's discount?",ph:"デュハヴァチルドレンズディスカウント",m:"子供料金の割引はありますか",c:6,ex:["Do you have a children's discount for this tour?","このツアーに子供料金の割引はありますか"]},
+  {p:"Is this ride okay for young kids?",ph:"イズディスライドオウケイフォーヤングキッズ",m:"このアトラクションは小さい子供でも大丈夫ですか",c:6,ex:["Is this ride okay for young kids, or is there a height limit?","このアトラクションは小さい子供でも大丈夫ですか、身長制限はありますか"]},
+
+  {p:"I can't find my child, can you help?",ph:"アイキャントファインドマイチャイルドキャニューヘルプ",m:"子供が見当たりません、助けてもらえますか",c:7,ex:["Excuse me, I can't find my son, can you help me?","すみません、息子が見当たりません、助けてもらえますか"]},
+  {p:"Where's the nearest pharmacy?",ph:"ウェアザニアレストファーマシー",m:"一番近い薬局はどこですか",c:7,ex:["Where's the nearest pharmacy? My daughter has a fever.","一番近い薬局はどこですか？娘が熱を出しています"]},
+  {p:"Can you call a doctor?",ph:"キャニューコーラダクター",m:"お医者さんを呼んでもらえますか",c:7,ex:["Can you call a doctor? My kid got stung by something.","お医者さんを呼んでもらえますか？子供が何かに刺されました"]},
+  {p:"I think we're lost.",ph:"アイスィンクウィアロスト",m:"道に迷ったと思います",c:7,ex:["I think we're lost, could you show us on the map?","道に迷ったと思います、地図で教えてもらえますか"]},
+
+  {p:"Aloha",ph:"アロハ",m:"こんにちは／さようなら／愛（挨拶全般に使われる万能語）",c:8,ex:["Aloha! Welcome to Hawaii.","アロハ！ハワイへようこそ"]},
+  {p:"Mahalo",ph:"マハロ",m:"ありがとう",c:8,ex:["Mahalo for your help today.","今日は助けてくれてありがとう"]},
+  {p:"Ohana",ph:"オハナ",m:"家族（血縁に限らず、大切な仲間も含む）",c:8,ex:["We're here as one big ohana.","私たちは一つの大きな家族として来ています"]},
+  {p:"Keiki",ph:"ケイキ",m:"子供",c:8,ex:["Is this beach good for keiki?","このビーチは子供にとって良い場所ですか"]},
+  {p:"Shaka",ph:"シャカ",m:"親指と小指を立てるハワイのハンドサイン（気さくな挨拶・感謝の意）",c:8,ex:["The lifeguard gave us a shaka as we paddled out.","ライフガードが漕ぎ出す私たちにシャカサインをしてくれた"]},
+  {p:"Mālama",ph:"マラマ",m:"大切にする、守る（\"Mālama Hawaii\"=ハワイを大切にという観光メッセージ）",c:8,ex:["Let's mālama the reef while we snorkel.","シュノーケリング中はサンゴ礁を大切にしよう"]},
+  {p:"Pau hana",ph:"パウハナ",m:"仕事終わり、一日の終わりにくつろぐ時間",c:8,ex:["Time for pau hana — let's watch the sunset.","仕事終わりの時間だ、夕日を見よう"]},
+  {p:"Kōkua",ph:"ココウア",m:"助け、協力",c:8,ex:["Mahalo for your kōkua with our bags.","荷物を手伝ってくれてありがとう"]}
+  ];
+
+  function escapeAttr(s){ return s.replace(/&/g,"&amp;").replace(/"/g,"&quot;"); }
+
+  var EXCLUDED_VOICE_NAMES = ["albert","bad news","bahh","boing","bubbles","cellos","fred","good news","junior","kathy","ralph","ささやき声","オルガン","スーパースター","トリノイド","ベル","道化","震え","zarvox","grandma","grandpa","rocko","sandy","samantha"];
+  var voiceList = [];
+  function pickBestVoice(list){
+    var best = null, bestScore = -1;
+    list.forEach(function(v){
+      var n = v.name.toLowerCase();
+      var score = 0;
+      if(n.indexOf("natural")>-1) score += 6;
+      if(n.indexOf("neural")>-1) score += 6;
+      if(n.indexOf("premium")>-1) score += 5;
+      if(n.indexOf("enhanced")>-1) score += 5;
+      if(n.indexOf("online")>-1) score += 4;
+      if(n.indexOf("google")>-1) score += 2;
+      if(v.lang && v.lang.toLowerCase()==="en-us") score += 1;
+      if(score > bestScore){ bestScore = score; best = v; }
+    });
+    return best || list[0] || null;
+  }
+  var bestVoice = null;
+  function loadVoices(){
+    if(!("speechSynthesis" in window)) return false;
+    var all = window.speechSynthesis.getVoices();
+    if(!all.length) return false;
+    var usEn = all.filter(function(v){ return v.lang && v.lang.toLowerCase()==="en-us" && EXCLUDED_VOICE_NAMES.indexOf(v.name.toLowerCase())===-1; });
+    voiceList = usEn.length ? usEn : all.filter(function(v){ return EXCLUDED_VOICE_NAMES.indexOf(v.name.toLowerCase())===-1; });
+    bestVoice = pickBestVoice(voiceList);
+    return true;
+  }
+  if("speechSynthesis" in window){
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+    if(!loadVoices()){
+      var tries = 0;
+      var retry = setInterval(function(){
+        tries++;
+        if(loadVoices() || tries >= 20) clearInterval(retry);
+      }, 250);
+    }
+  }
+  function speak(text){
+    if(!("speechSynthesis" in window)) return;
+    window.speechSynthesis.cancel();
+    var u = new SpeechSynthesisUtterance(text);
+    if(bestVoice){ u.voice = bestVoice; u.lang = bestVoice.lang; } else { u.lang = "en-US"; }
+    u.rate = 0.95;
+    window.speechSynthesis.speak(u);
+  }
+
+  var currentCat = -1;
+  var chipsEl = document.getElementById("phraseChips");
+  var gridEl = document.getElementById("phraseGrid");
+  chipsEl.innerHTML = '<button type="button" class="phrase-chip active" data-cat="-1">すべて</button>' +
+    CATS.map(function(c,i){ return '<button type="button" class="phrase-chip" data-cat="'+i+'">'+c+'</button>'; }).join("");
+  chipsEl.querySelectorAll(".phrase-chip").forEach(function(chip){
+    chip.addEventListener("click", function(){
+      currentCat = parseInt(chip.getAttribute("data-cat"), 10);
+      chipsEl.querySelectorAll(".phrase-chip").forEach(function(c){ c.classList.remove("active"); });
+      chip.classList.add("active");
+      renderPhrases();
+    });
+  });
+
+  function renderPhrases(){
+    gridEl.innerHTML = DATA.map(function(item, idx){
+      if(currentCat >= 0 && item.c !== currentCat) return "";
+      return '<div class="phrase-card">' +
+        '<div class="phrase-head">' +
+          '<button type="button" class="phrase-play" data-text="'+escapeAttr(item.p)+'" aria-label="発音を聞く">▶</button>' +
+          '<div>' +
+            '<div class="phrase-en">'+item.p+'</div>' +
+            '<div class="phrase-ph">'+item.ph+'</div>' +
+            '<div class="phrase-jp">'+item.m+'</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="phrase-ex">' +
+          '<button type="button" class="phrase-ex-play" data-text="'+escapeAttr(item.ex[0])+'" aria-label="例文を聞く">▶</button>' +
+          '<div><span class="phrase-ex-en">'+item.ex[0]+'</span><br>'+item.ex[1]+'</div>' +
+        '</div>' +
+      '</div>';
+    }).join("");
+    gridEl.querySelectorAll(".phrase-play, .phrase-ex-play").forEach(function(btn){
+      btn.addEventListener("click", function(){ speak(btn.getAttribute("data-text")); });
+    });
+  }
+  renderPhrases();
+})();
+</script>
 
 </body>
 </html>
