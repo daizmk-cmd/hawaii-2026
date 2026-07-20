@@ -1612,8 +1612,10 @@
     if(!("speechSynthesis" in window)) return false;
     var all = window.speechSynthesis.getVoices();
     if(!all.length) return false;
-    var usEn = all.filter(function(v){ return v.lang && v.lang.toLowerCase()==="en-us" && EXCLUDED_VOICE_NAMES.indexOf(v.name.toLowerCase())===-1; });
-    voiceList = usEn.length ? usEn : all.filter(function(v){ return EXCLUDED_VOICE_NAMES.indexOf(v.name.toLowerCase())===-1; });
+    var notExcluded = function(v){ return EXCLUDED_VOICE_NAMES.indexOf(v.name.toLowerCase())===-1; };
+    var usEn = all.filter(function(v){ return v.lang && v.lang.toLowerCase()==="en-us" && notExcluded(v); });
+    var anyEn = all.filter(function(v){ return v.lang && v.lang.toLowerCase().indexOf("en")===0 && notExcluded(v); });
+    voiceList = usEn.length ? usEn : (anyEn.length ? anyEn : all.filter(notExcluded));
     bestVoice = pickBestVoice(voiceList);
     return true;
   }
